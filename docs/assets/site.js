@@ -69,6 +69,40 @@
     }
   });
 
+  document.querySelectorAll("[data-copy-target]").forEach((button) => {
+    const source = document.getElementById(button.dataset.copyTarget);
+    if (!source) {
+      return;
+    }
+
+    let resetTimer = null;
+    button.addEventListener("click", async () => {
+      const text = source.textContent.trim();
+      let copied = false;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(source);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        copied = document.execCommand("copy");
+        selection.removeAllRanges();
+      }
+
+      button.textContent = copied ? "Copied" : "Copy failed";
+      button.classList.toggle("is-copied", copied);
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(() => {
+        button.textContent = "Copy";
+        button.classList.remove("is-copied");
+      }, 2000);
+    });
+  });
+
   const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
   const sections = navLinks
     .map((link) => document.querySelector(link.getAttribute("href")))

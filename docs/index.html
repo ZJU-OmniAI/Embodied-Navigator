@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Anonymous project page for TAMP-Nav, a framework for efficient embodied navigation.">
+  <meta name="description" content="Anonymous project page for TAMP-Nav: Point, Think, Memorize, and Align for Efficient Embodied Navigation.">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="theme-color" content="#f4f6f3">
-  <title>TAMP-Nav | Anonymous Project Page</title>
+  <meta name="theme-color" content="#fbfcfa">
+  <title>TAMP-Nav: Point, Think, Memorize, and Align for Efficient Embodied Navigation</title>
   <link rel="stylesheet" href="assets/site.css">
   <script defer src="assets/site.js"></script>
 </head>
@@ -15,7 +15,7 @@
 
   <header class="site-header" data-site-header>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="site-mark" href="#top" aria-label="TAMP-Nav home">
+      <a class="site-mark" href="#top" aria-label="TAMP-Nav, top of page">
         <span class="site-mark-symbol">T</span>
         <span>TAMP-Nav</span>
       </a>
@@ -24,27 +24,52 @@
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#analysis">Analysis</a>
-        <a href="#examples">Examples</a>
+        <a href="#qualitative">Qualitative</a>
+        <a href="#bibtex">BibTeX</a>
       </div>
     </nav>
   </header>
 
   <main id="main">
+    <!-- ===================== Title block ===================== -->
     <section class="masthead" id="top" aria-labelledby="page-title">
       <div class="masthead-copy page-width">
-        <p class="review-label">Anonymous research artifact &middot; Under double-blind review</p>
-        <h1 id="page-title">TAMP-Nav</h1>
-        <p class="paper-title">Point, Think, Memorize, and Align for Efficient Embodied Navigation</p>
-        <p class="authors">Anonymous Authors</p>
-        <p class="lead">
-          A vision-language navigation framework that aligns 2D visual grounding,
-          adaptive reasoning, compact trajectory memory, and physical execution.
-        </p>
-        <div class="section-jumps" aria-label="Page highlights">
-          <a href="#method">Explore the method</a>
-          <a href="#results">Inspect the results</a>
-          <a href="#examples">View trajectories</a>
-        </div>
+        <p class="venue-line">Anonymous submission &middot; Under double-blind review</p>
+
+        <h1 id="page-title">
+          <span class="title-mark">TAMP-Nav</span><span class="title-colon">:</span>
+          <span class="title-rest">Point, Think, Memorize, and Align for Efficient Embodied Navigation</span>
+        </h1>
+
+        <p class="authors">Anonymous Authors<sup>1</sup></p>
+        <p class="affiliations"><sup>1</sup>Affiliation withheld for double-blind review</p>
+
+        <ul class="resource-links" aria-label="Paper resources">
+          <li>
+            <span class="resource-link is-disabled" role="note">
+              <span class="resource-icon" aria-hidden="true">&#9679;</span>
+              Paper <em>withheld for review</em>
+            </span>
+          </li>
+          <li>
+            <a class="resource-link" href="#artifact">
+              <span class="resource-icon" aria-hidden="true">&#9670;</span>
+              Code <em>in this artifact</em>
+            </a>
+          </li>
+          <li>
+            <a class="resource-link" href="#artifact">
+              <span class="resource-icon" aria-hidden="true">&#9632;</span>
+              MultiNav-CoT <em>review subset</em>
+            </a>
+          </li>
+          <li>
+            <a class="resource-link" href="#bibtex">
+              <span class="resource-icon" aria-hidden="true">&#8220;</span>
+              BibTeX
+            </a>
+          </li>
+        </ul>
       </div>
 
       <figure class="teaser page-wide">
@@ -52,8 +77,8 @@
           class="figure-button"
           type="button"
           data-lightbox="img/architecture.png"
-          data-caption="TAMP-Nav combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution."
-          aria-label="Open the TAMP-Nav architecture figure at full size"
+          data-caption="Figure 1. TAMP-Nav combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution."
+          aria-label="Open Figure 1, the TAMP-Nav architecture, at full size"
           title="Open full-size figure"
         >
           <img
@@ -66,70 +91,86 @@
           <span class="zoom-mark" aria-hidden="true">+</span>
         </button>
         <figcaption>
-          The VLM reasons at critical nodes, predicts a visual waypoint, and delegates
-          metric execution to a low-level controller.
+          <span class="fig-label">Figure 1.</span>
+          Overview of TAMP-Nav. The policy reasons at critical nodes, predicts a view and a
+          2D pixel waypoint, and delegates metric execution to a low-level controller.
+          Depth is used only after prediction, for geometric projection.
         </figcaption>
       </figure>
 
-      <div class="metric-strip" aria-label="Headline results">
+      <dl class="metric-strip" aria-label="Headline results">
         <div class="metric">
-          <strong>66.2%</strong>
-          <span>R2R-CE success</span>
+          <dt>R2R-CE SR</dt>
+          <dd>66.2%</dd>
         </div>
         <div class="metric">
-          <strong>65.7%</strong>
-          <span>RxR-CE success</span>
+          <dt>RxR-CE SR</dt>
+          <dd>65.7%</dd>
         </div>
         <div class="metric">
-          <strong>26.3%</strong>
-          <span>reasoning ratio</span>
+          <dt>Reasoning ratio</dt>
+          <dd>26.3%</dd>
         </div>
         <div class="metric">
-          <strong>60.0%</strong>
-          <span>zero-shot real-world success</span>
+          <dt>Real-world SR</dt>
+          <dd>60.0%</dd>
         </div>
-      </div>
+      </dl>
     </section>
 
-    <section class="section band-light" id="abstract" aria-labelledby="abstract-title">
-      <div class="page-width prose-grid">
-        <div class="section-heading">
-          <p class="section-index">01</p>
+    <!-- ===================== 1. Abstract ===================== -->
+    <section class="section" id="abstract" aria-labelledby="abstract-title">
+      <div class="page-width">
+        <div class="section-head">
+          <p class="section-number">1</p>
           <h2 id="abstract-title">Abstract</h2>
         </div>
-        <div class="prose">
+
+        <div class="abstract-body">
           <p>
-            Large vision-language models bring strong visual-semantic understanding to
-            embodied navigation, but their 2D pre-training priors are poorly matched to
-            direct 3D coordinate regression. Dense reasoning schedules add latency, while
-            naive history retention either overflows the context or discards crucial
-            topological information.
+            Although Large Vision-Language Models (VLMs) have significantly advanced
+            embodied navigation, their direct deployment remains challenging, as existing
+            methods often force VLMs into unnatural action spaces that misalign with their
+            2D pre-training priors, compounded by rigid reasoning schedules and inefficient
+            memory management. To overcome these limitations, we propose <strong>TAMP-Nav</strong>,
+            a unified framework for efficient embodied navigation.
           </p>
           <p>
-            TAMP-Nav addresses these limitations in one interaction loop. The policy acts
-            as a visual pointer, selecting a view and 2D pixel that are projected into a
-            3D waypoint for SLAM execution. It triggers Chain-of-Thought only at critical
-            nodes and stores them as high-fidelity anchors; routine path segments are
-            compressed into Space-Time Indicators. Two-Level GRPO then combines local
-            process rewards with global trajectory outcomes. The resulting RGB-based
-            navigator reaches 66.2% SR on R2R-CE and 65.7% SR on RxR-CE while using
-            selective reasoning on 26.3% of its decisions.
+            First, we introduce a <strong>Pixel-to-3D Action Formulation</strong> (<em>Point</em>)
+            that reformulates navigation into 2D visual prompting. Specifically, the VLM merely
+            selects 2D pixels, which are then projected into 3D coordinates for a low-level SLAM
+            controller. This design naturally aligns embodied execution with the VLM's inherent
+            2D visual capabilities. Second, we propose an integrated <strong>Selective Reasoning
+            and Anchor-Trajectory Memory</strong> mechanism (<em>Think</em> and <em>Memorize</em>),
+            which dynamically triggers Chain-of-Thought and retains high-fidelity memory only at
+            critical nodes, compressing redundant trajectories into lightweight
+            <strong>Space-Time Indicators</strong>, thereby preserving critical historical
+            information and enhancing spatio-temporal perception.
           </p>
-          <p class="contribution">
-            <strong>One-sentence contribution.</strong> TAMP-Nav aligns where a VLM points,
-            when it thinks, what it remembers, and how its decisions receive feedback.
+          <p>
+            Finally, we design an efficient <strong>Two-Level Alignment Paradigm</strong>
+            (<em>Align</em>) via Group Relative Policy Optimization (GRPO). By superimposing
+            global outcome rewards with fine-grained process rewards, this dense supervision
+            tightly aligns the agent's cognitive planning with physical environmental feedback,
+            endowing the model with adaptive reasoning capabilities. Experiments demonstrate that
+            TAMP-Nav achieves state-of-the-art performance (e.g., 66.2% SR on R2R-CE) with high
+            runtime and sample efficiency (requiring only 90k training trajectories).
           </p>
         </div>
+
+        <p class="contribution">
+          <strong>One-sentence contribution.</strong> TAMP-Nav aligns where a VLM points,
+          when it thinks, what it remembers, and how its decisions receive feedback.
+        </p>
       </div>
     </section>
 
-    <section class="section" id="method" aria-labelledby="method-title">
+    <!-- ===================== 2. Method ===================== -->
+    <section class="section section-alt" id="method" aria-labelledby="method-title">
       <div class="page-width">
-        <div class="section-heading section-heading-row">
-          <div>
-            <p class="section-index">02</p>
-            <h2 id="method-title">Method</h2>
-          </div>
+        <div class="section-head">
+          <p class="section-number">2</p>
+          <h2 id="method-title">Method</h2>
           <p class="section-summary">
             Four aligned components connect high-level visual reasoning to efficient
             long-horizon execution.
@@ -182,8 +223,8 @@
             class="figure-button"
             type="button"
             data-lightbox="img/two_level_grpo.png"
-            data-caption="Two-Level GRPO explores candidate actions inside complete navigation rollouts and combines local process feedback with global trajectory outcomes."
-            aria-label="Open the Two-Level GRPO figure at full size"
+            data-caption="Figure 2. Two-Level GRPO explores candidate actions inside complete navigation rollouts and combines local process feedback with global trajectory outcomes."
+            aria-label="Open Figure 2, the Two-Level GRPO diagram, at full size"
             title="Open full-size figure"
           >
             <img
@@ -196,8 +237,9 @@
             <span class="zoom-mark" aria-hidden="true">+</span>
           </button>
           <figcaption>
+            <span class="fig-label">Figure 2.</span>
             Two-Level GRPO explores multiple candidate actions per step and multiple
-            complete trajectories per instruction.
+            complete trajectories per instruction, then superimposes the two advantages.
           </figcaption>
         </figure>
       </div>
@@ -220,51 +262,61 @@
           </p>
         </div>
       </div>
+
+      <div class="page-width">
+        <p class="section-note">
+          Over 800 training steps, trajectory-level rewards alone converge at a success
+          reward of <strong>0.59</strong>. Superimposing local step advantages lifts this to
+          <strong>0.64</strong>, and adding annealed guided sampling reaches
+          <strong>0.68</strong> with faster convergence.
+        </p>
+      </div>
     </section>
 
-    <section class="section band-dark" id="results" aria-labelledby="results-title">
+    <!-- ===================== 3. Results ===================== -->
+    <section class="section" id="results" aria-labelledby="results-title">
       <div class="page-width">
-        <div class="section-heading section-heading-row">
-          <div>
-            <p class="section-index">03</p>
-            <h2 id="results-title">Main Results</h2>
-          </div>
+        <div class="section-head">
+          <p class="section-number">3</p>
+          <h2 id="results-title">Main Results</h2>
           <p class="section-summary">
             TAMP-Nav reports the strongest results among the compared RGB-based
             navigators on both validation-unseen benchmarks.
           </p>
         </div>
 
-        <div class="result-callout">
-          <p class="result-callout-value">+10.5 pp</p>
-          <p>
-            R2R-CE success improvement from SFT-only initialization
-            <strong>55.7%</strong> to the full framework <strong>66.2%</strong>.
-          </p>
-        </div>
+        <p class="setup-note">
+          <strong>Setup.</strong> Qwen2.5-VL-7B base model, SFT cold start on MultiNav-CoT
+          followed by Two-Level GRPO, a 4,096-token context window, and NVIDIA A800 GPUs for
+          training, evaluation, and deployment. Metrics are Navigation Error (NE), Oracle
+          Success (OS), Success Rate (SR), Success weighted by Path Length (SPL), and
+          normalized Dynamic Time Warping (nDTW).
+        </p>
 
         <div class="table-grid">
           <div class="table-block">
-            <div class="table-title">
-              <h3>R2R-CE Val-Unseen</h3>
-              <span>SR / SPL higher; NE lower</span>
-            </div>
+            <p class="table-caption">
+              <span class="tab-label">Table 1.</span>
+              R2R-CE val-unseen. NE in meters (lower is better); OS, SR, SPL in percent
+              (higher is better). All listed methods observe RGB only, without odometry or
+              depth input.
+            </p>
             <div class="table-scroll" tabindex="0">
               <table>
                 <thead>
                   <tr>
                     <th scope="col">Method</th>
-                    <th scope="col">NE</th>
-                    <th scope="col">OS</th>
-                    <th scope="col">SR</th>
-                    <th scope="col">SPL</th>
+                    <th scope="col">NE&nbsp;&darr;</th>
+                    <th scope="col">OS&nbsp;&uarr;</th>
+                    <th scope="col">SR&nbsp;&uarr;</th>
+                    <th scope="col">SPL&nbsp;&uarr;</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr><th scope="row">StreamVLN</th><td>4.98</td><td>64.2</td><td>56.9</td><td>51.9</td></tr>
                   <tr><th scope="row">NavFoM</th><td>4.61</td><td>72.1</td><td>61.7</td><td>55.3</td></tr>
                   <tr><th scope="row">DualVLN</th><td>4.05</td><td>70.7</td><td>64.3</td><td>58.5</td></tr>
-                  <tr><th scope="row">TAMP-Nav (SFT)</th><td>4.88</td><td>62.0</td><td>55.7</td><td>50.3</td></tr>
+                  <tr class="baseline-ours"><th scope="row">TAMP-Nav (SFT only)</th><td>4.88</td><td>62.0</td><td>55.7</td><td>50.3</td></tr>
                   <tr class="ours"><th scope="row">TAMP-Nav</th><td>3.85</td><td>74.5</td><td>66.2</td><td>58.8</td></tr>
                 </tbody>
               </table>
@@ -272,32 +324,44 @@
           </div>
 
           <div class="table-block">
-            <div class="table-title">
-              <h3>RxR-CE Val-Unseen</h3>
-              <span>SR / SPL / nDTW higher; NE lower</span>
-            </div>
+            <p class="table-caption">
+              <span class="tab-label">Table 2.</span>
+              RxR-CE val-unseen. NE in meters (lower is better); SR, SPL, nDTW in percent
+              (higher is better). All listed methods observe RGB only, without odometry or
+              depth input.
+            </p>
             <div class="table-scroll" tabindex="0">
               <table>
                 <thead>
                   <tr>
                     <th scope="col">Method</th>
-                    <th scope="col">NE</th>
-                    <th scope="col">SR</th>
-                    <th scope="col">SPL</th>
-                    <th scope="col">nDTW</th>
+                    <th scope="col">NE&nbsp;&darr;</th>
+                    <th scope="col">SR&nbsp;&uarr;</th>
+                    <th scope="col">SPL&nbsp;&uarr;</th>
+                    <th scope="col">nDTW&nbsp;&uarr;</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr><th scope="row">StreamVLN</th><td>6.22</td><td>52.9</td><td>46.0</td><td>61.9</td></tr>
                   <tr><th scope="row">NavFoM</th><td>4.74</td><td>64.4</td><td>56.2</td><td>65.8</td></tr>
                   <tr><th scope="row">DualVLN</th><td>4.58</td><td>61.4</td><td>51.8</td><td>70.0</td></tr>
-                  <tr><th scope="row">TAMP-Nav (SFT)</th><td>6.10</td><td>52.4</td><td>46.2</td><td>62.1</td></tr>
+                  <tr class="baseline-ours"><th scope="row">TAMP-Nav (SFT only)</th><td>6.10</td><td>52.4</td><td>46.2</td><td>62.1</td></tr>
                   <tr class="ours"><th scope="row">TAMP-Nav</th><td>4.32</td><td>65.7</td><td>56.9</td><td>72.4</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+
+        <div class="result-callout">
+          <p class="result-callout-value">+10.5 pp</p>
+          <p>
+            R2R-CE success improves from the SFT-only initialization at <strong>55.7%</strong>
+            to <strong>66.2%</strong> with the full framework, isolating the contribution of
+            Two-Level GRPO alignment.
+          </p>
+        </div>
+
         <p class="table-note">
           Values are reported in the anonymous manuscript. Depth supports post-prediction
           projection but is not an input to the VLM.
@@ -305,13 +369,12 @@
       </div>
     </section>
 
-    <section class="section" id="analysis" aria-labelledby="analysis-title">
+    <!-- ===================== 4. Analysis ===================== -->
+    <section class="section section-alt" id="analysis" aria-labelledby="analysis-title">
       <div class="page-width">
-        <div class="section-heading section-heading-row">
-          <div>
-            <p class="section-index">04</p>
-            <h2 id="analysis-title">What The Model Learns</h2>
-          </div>
+        <div class="section-head">
+          <p class="section-number">4</p>
+          <h2 id="analysis-title">Analysis and Ablations</h2>
           <p class="section-summary">
             The gains reflect when the model reasons, how it stores history, and how
             efficiently it interacts with the environment.
@@ -325,8 +388,8 @@
             class="figure-button"
             type="button"
             data-lightbox="img/reasoning_heatmap.png"
-            data-caption="Spatial density of reasoning triggers for the SFT initialization (left) and RL-aligned TAMP-Nav (right)."
-            aria-label="Open the reasoning trigger heatmap at full size"
+            data-caption="Figure 3. Spatial density of reasoning triggers for the SFT initialization (left) and RL-aligned TAMP-Nav (right)."
+            aria-label="Open Figure 3, the reasoning trigger heatmap, at full size"
             title="Open full-size figure"
           >
             <img
@@ -339,8 +402,10 @@
             <span class="zoom-mark" aria-hidden="true">+</span>
           </button>
           <figcaption>
-            RL alignment concentrates reasoning around topological decisions and suppresses
-            unnecessary thinking along routine corridors.
+            <span class="fig-label">Figure 3.</span>
+            Spatial density of reasoning triggers, SFT initialization (left) versus
+            RL-aligned TAMP-Nav (right). Alignment concentrates reasoning around
+            topological decisions and suppresses thinking along routine corridors.
           </figcaption>
         </figure>
       </div>
@@ -348,20 +413,24 @@
       <div class="page-width analysis-grid">
         <article class="analysis-block">
           <p class="analysis-label">Selective reasoning</p>
-          <h3>Near-dense performance at one-quarter of the reasoning rate</h3>
+          <h3>Near-dense performance at one quarter of the reasoning rate</h3>
+          <p class="table-caption">
+            <span class="tab-label">Table 3.</span>
+            Reasoning trigger strategies on R2R-CE val-unseen.
+          </p>
           <div class="table-scroll compact-table" tabindex="0">
             <table>
               <thead>
-                <tr><th scope="col">Trigger</th><th scope="col">CoT ratio</th><th scope="col">SR</th></tr>
+                <tr><th scope="col">Trigger</th><th scope="col">CoT ratio</th><th scope="col">SR&nbsp;&uarr;</th></tr>
               </thead>
               <tbody>
                 <tr><th scope="row">Dense CoT</th><td>100.0%</td><td>66.8%</td></tr>
-                <tr><th scope="row">Fixed 1/3</th><td>36.2%</td><td>60.1%</td></tr>
-                <tr class="ours"><th scope="row">Adaptive</th><td>26.3%</td><td>66.2%</td></tr>
+                <tr><th scope="row">Fixed interval (1/3)</th><td>36.2%</td><td>60.1%</td></tr>
+                <tr class="ours"><th scope="row">Adaptive (ours)</th><td>26.3%</td><td>66.2%</td></tr>
               </tbody>
             </table>
           </div>
-          <p>
+          <p class="block-note">
             The share of reasoning assigned to straight corridors falls from 38% after
             SFT to 11% after RL alignment.
           </p>
@@ -370,54 +439,67 @@
         <article class="analysis-block">
           <p class="analysis-label">Long-horizon memory</p>
           <h3>Anchor-Trajectory Memory preserves extended navigation context</h3>
+          <p class="table-caption">
+            <span class="tab-label">Table 4.</span>
+            Baselines and memory variants on the long-horizon subset: 5,927 R2R-CE and
+            RxR-CE val-unseen trajectories whose expert path exceeds 12.5 meters, over 50
+            atomic forward actions.
+          </p>
           <div class="table-scroll compact-table" tabindex="0">
             <table>
               <thead>
-                <tr><th scope="col">Variant</th><th scope="col">Long-horizon SR</th></tr>
+                <tr><th scope="col">Model</th><th scope="col">Long-horizon SR&nbsp;&uarr;</th></tr>
               </thead>
               <tbody>
-                <tr><th scope="row">Uniform sampling</th><td>40.5</td></tr>
-                <tr><th scope="row">Full history</th><td>42.4</td></tr>
-                <tr><th scope="row">Without STI</th><td>45.6</td></tr>
-                <tr class="ours"><th scope="row">Anchor-Trajectory</th><td>49.8</td></tr>
+                <tr><th scope="row">StreamVLN</th><td>30.9</td></tr>
+                <tr><th scope="row">DualVLN</th><td>41.9</td></tr>
+                <tr><th scope="row">TAMP-Nav (uniform sampling)</th><td>40.5</td></tr>
+                <tr><th scope="row">TAMP-Nav (full history)</th><td>42.4</td></tr>
+                <tr><th scope="row">TAMP-Nav (w/o STI)</th><td>45.6</td></tr>
+                <tr class="ours"><th scope="row">TAMP-Nav (AT-Mem)</th><td>49.8</td></tr>
               </tbody>
             </table>
           </div>
-          <p>
-            Removing Space-Time Indicators costs 4.2 points on 5,927 trajectories longer
-            than 12.5 meters.
+          <p class="block-note">
+            Anchor-Trajectory Memory avoids both the information loss of uniform sampling
+            and the attention dilution of full history. Removing Space-Time Indicators
+            alone costs 4.2 points.
           </p>
         </article>
       </div>
 
-      <div class="evidence-strip">
-        <div class="page-width evidence-grid">
+      <div class="page-width evidence-strip">
+        <dl class="evidence-grid">
           <div>
-            <strong>9</strong>
-            <span>policy interactions per trajectory</span>
-            <small>approximately 30 for StreamVLN and DualVLN</small>
+            <dd>90k / 700k</dd>
+            <dt>training trajectories / interactions</dt>
+            <p>763k trajectories for DualVLN; 3.37M interactions for NavFoM</p>
           </div>
           <div>
-            <strong>16.58 s</strong>
-            <span>average task time on one A800</span>
-            <small>37.47 s StreamVLN; 41.46 s DualVLN</small>
+            <dd>9</dd>
+            <dt>policy interactions per trajectory</dt>
+            <p>approximately 30 for StreamVLN and DualVLN</p>
           </div>
           <div>
-            <strong>-2.8 pp</strong>
-            <span>SR at 0.2 depth noise</span>
-            <small>closed-loop execution corrects geometric error</small>
+            <dd>16.58 s</dd>
+            <dt>average task time on one A800</dt>
+            <p>37.47 s StreamVLN; 41.46 s DualVLN</p>
           </div>
-        </div>
+          <div>
+            <dd>&minus;2.8 pp</dd>
+            <dt>SR at depth noise &sigma; = 0.2</dt>
+            <p>closed-loop re-evaluation corrects single-step geometric error</p>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <section class="section band-light" id="examples" aria-labelledby="examples-title">
+    <!-- ===================== 5. Qualitative ===================== -->
+    <section class="section" id="qualitative" aria-labelledby="qualitative-title">
       <div class="page-width">
-        <div class="section-heading section-heading-row">
-          <div>
-            <p class="section-index">05</p>
-            <h2 id="examples-title">Qualitative Results</h2>
-          </div>
+        <div class="section-head">
+          <p class="section-number">5</p>
+          <h2 id="qualitative-title">Qualitative Results</h2>
           <p class="section-summary">
             Pixel waypoints and sparse reasoning transfer from continuous simulation to
             an unmapped real-world environment.
@@ -429,8 +511,8 @@
             class="figure-button"
             type="button"
             data-lightbox="img/simulation_trajectory.png"
-            data-caption="A simulated trajectory showing multi-view pixel actions and reasoning at task-relevant decision points."
-            aria-label="Open the simulation trajectory at full size"
+            data-caption="Figure 4. A simulated trajectory showing multi-view pixel actions and reasoning at task-relevant decision points."
+            aria-label="Open Figure 4, the simulation trajectory, at full size"
             title="Open full-size figure"
           >
             <img
@@ -443,8 +525,9 @@
             <span class="zoom-mark" aria-hidden="true">+</span>
           </button>
           <figcaption>
-            Simulation: the agent reasons around the staircase and task transition, while
-            routine movement proceeds through direct pixel actions.
+            <span class="fig-label">Figure 4.</span>
+            Simulation. The agent reasons around the staircase and the task transition,
+            while routine movement proceeds through direct pixel actions.
           </figcaption>
         </figure>
 
@@ -454,8 +537,8 @@
               class="figure-button"
               type="button"
               data-lightbox="img/real_world_trajectory.png"
-              data-caption="A zero-shot real-world trajectory in an unmapped environment."
-              aria-label="Open the real-world trajectory at full size"
+              data-caption="Figure 5. A zero-shot real-world trajectory in an unmapped environment."
+              aria-label="Open Figure 5, the real-world trajectory, at full size"
               title="Open full-size figure"
             >
               <img
@@ -467,7 +550,11 @@
               >
               <span class="zoom-mark" aria-hidden="true">+</span>
             </button>
-            <figcaption>Representative zero-shot real-world execution.</figcaption>
+            <figcaption>
+              <span class="fig-label">Figure 5.</span>
+              Representative zero-shot execution in an unmapped real environment on a
+              Unitree Go2 robot, without real-robot fine-tuning.
+            </figcaption>
           </figure>
 
           <figure>
@@ -475,8 +562,8 @@
               class="figure-button"
               type="button"
               data-lightbox="img/real_world_success.png"
-              data-caption="Real-world success rates over 100 blind trials: StreamVLN 49.0%, DualVLN 53.0%, and TAMP-Nav 60.0%."
-              aria-label="Open the real-world success chart at full size"
+              data-caption="Figure 6. Real-world success rates over 100 blind trials: StreamVLN 49.0%, DualVLN 53.0%, and TAMP-Nav 60.0%."
+              aria-label="Open Figure 6, the real-world success chart, at full size"
               title="Open full-size figure"
             >
               <img
@@ -488,16 +575,49 @@
               >
               <span class="zoom-mark" aria-hidden="true">+</span>
             </button>
-            <figcaption>Success rate across 100 blind real-world trials.</figcaption>
+            <figcaption>
+              <span class="fig-label">Figure 6.</span>
+              Success rate across 100 blind trials run by an independent operator in
+              unmapped indoor and outdoor environments, with human-annotated instructions;
+              success is stopping within 1.5&nbsp;m of the target. TAMP-Nav 60.0% versus
+              StreamVLN 49.0% and DualVLN 53.0%.
+            </figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="section artifact-section" aria-labelledby="artifact-title">
+    <!-- ===================== 6. BibTeX ===================== -->
+    <section class="section section-alt" id="bibtex" aria-labelledby="bibtex-title">
+      <div class="page-width">
+        <div class="section-head">
+          <p class="section-number">6</p>
+          <h2 id="bibtex-title">BibTeX</h2>
+          <p class="section-summary">
+            Citation metadata is anonymized during review and will be replaced on
+            acceptance.
+          </p>
+        </div>
+
+        <div class="bibtex-block">
+          <button class="bibtex-copy" type="button" data-copy-target="bibtex-source">Copy</button>
+          <pre id="bibtex-source"><code>@inproceedings{anonymous2026tampnav,
+  title     = {TAMP-Nav: Point, Think, Memorize, and Align
+               for Efficient Embodied Navigation},
+  author    = {Anonymous Authors},
+  booktitle = {Under double-blind review},
+  year      = {2026},
+  note      = {Author and venue metadata withheld during review}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Artifact scope ===================== -->
+    <section class="section artifact-section" id="artifact" aria-labelledby="artifact-title">
       <div class="page-width artifact-grid">
         <div>
-          <p class="section-index">Review artifact</p>
+          <p class="artifact-kicker">Review artifact</p>
           <h2 id="artifact-title">Anonymous by design</h2>
         </div>
         <div>
@@ -507,9 +627,15 @@
             double-blind review.
           </p>
           <p>
-            The full licensed simulation assets, complete training corpus, model
-            checkpoints, manuscript, and paper source are distributed separately and are
-            not part of this repository.
+            This repository contains the navigation policy, the navigation-adapted VLM,
+            SFT and Two-Level GRPO training code, the continuous-navigation environment
+            and evaluation harness, the MultiNav-CoT processing pipeline with an
+            anonymized review subset, and the real-robot serving interfaces.
+          </p>
+          <p>
+            The full licensed simulation assets, the complete training corpus, model
+            checkpoints, the manuscript, and the paper source are distributed separately
+            and are not part of this repository.
           </p>
         </div>
       </div>
@@ -518,7 +644,7 @@
 
   <footer class="site-footer">
     <div class="page-width">
-      <p>TAMP-Nav &middot; Anonymous research artifact</p>
+      <p>TAMP-Nav &middot; Anonymous research artifact &middot; No tracking, no external requests</p>
       <a href="#top">Back to top</a>
     </div>
   </footer>
