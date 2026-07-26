@@ -2,239 +2,175 @@
 
 # TAMP-Nav
 
-**Point, Think, Memorize, and Align for Efficient Embodied Navigation**
+### Point, Think, Memorize, and Align for Efficient Embodied Navigation
 
 Anonymous research artifact for double-blind review
 
-[Sample data](data/) · [Configurations](config/) · [Training and evaluation scripts](scripts/)
+[Architecture](#architecture) | [Results](#main-results) | [Analysis](#what-the-model-learns) | [Examples](#qualitative-examples)
 
 </div>
 
-> [!IMPORTANT]
-> This repository is intentionally anonymous. Author names, affiliations, acknowledgements, personal project links, and a project citation are omitted during double-blind review. The manuscript and paper source are distributed separately and intentionally excluded from this repository.
-
 ## Overview
 
-TAMP-Nav is a vision-language navigation framework designed to improve spatial alignment, reasoning efficiency, and long-horizon memory. A Qwen2.5-VL-7B-based policy observes four RGB views and predicts a view together with a 2D pixel waypoint. The corresponding depth observation projects that waypoint into 3D, where a low-level Habitat/SLAM controller executes the motion.
+TAMP-Nav is a unified vision-language navigation framework that aligns high-level visual reasoning with low-level physical execution. Instead of asking a vision-language model (VLM) to regress 3D coordinates or emit long sequences of atomic actions, TAMP-Nav lets the model act as a visual pointer: it selects a camera view and a 2D pixel waypoint, which is projected into 3D and executed by a low-level SLAM controller.
 
-The framework contains four complementary components:
+The framework couples this vision-centric action space with selective reasoning, long-horizon memory, and hierarchical reinforcement learning. The resulting RGB-based navigator reasons at difficult decision points, preserves the topology of long trajectories, and learns from both immediate physical feedback and complete-task outcomes.
 
-- **Point — Pixel-to-3D actions.** The VLM operates in its native 2D visual space while geometric projection and low-level control handle physical execution.
-- **Think — Selective reasoning.** Chain-of-thought is triggered at difficult decision points instead of at every navigation step.
-- **Memorize — Anchor-Trajectory Memory.** Critical observations are retained as visual anchors, while routine trajectory segments are compressed into lightweight Space-Time Indicator (STI) tokens.
-- **Align — Two-Level GRPO.** Step-level process rewards and trajectory-level outcome rewards jointly align reasoning, action selection, and navigation success.
+> **Core contribution:** TAMP-Nav unifies spatial alignment, adaptive reasoning, compact trajectory memory, and dense policy optimization in one embodied navigation framework.
 
-The anonymous manuscript reports the following results on validation-unseen splits:
+## Architecture
 
-| Benchmark | NE ↓ | OS ↑ | SR ↑ | SPL ↑ | nDTW ↑ |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| R2R-CE | 3.85 | 74.5 | 66.2 | 58.8 | — |
-| RxR-CE | 4.32 | — | 65.7 | 56.9 | 72.4 |
+<p align="center">
+  <img src="docs/img/architecture.png" alt="TAMP-Nav architecture" width="100%">
+</p>
 
-These values are transcribed from the paper; they were not recomputed from this reduced review artifact. The full evaluation datasets and trained checkpoints are not included.
+<p align="center"><em>
+TAMP-Nav combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution.
+</em></p>
 
-## Artifact contents
+At each navigation step, the policy combines four egocentric RGB views with a compressed history. It decides whether the scene warrants explicit reasoning, predicts a view and pixel waypoint, and delegates metric execution to the controller. Depth is used only after the VLM prediction for geometric projection; it is not an input to the VLM.
 
-| Path | Description |
+| Component | Mechanism | Effect |
+| --- | --- | --- |
+| **Point** | Select a view and 2D pixel, then project it into 3D | Matches the VLM's 2D visual priors while leaving geometry and motion control to deterministic modules |
+| **Think** | Trigger Chain-of-Thought only at critical topological nodes | Concentrates computation on crossroads, doorways, and target-relevant decisions |
+| **Memorize** | Store critical states as visual-reasoning anchors and routine motion as Space-Time Indicators | Preserves long-horizon topology without retaining every visual frame |
+| **Align** | Combine local process rewards with global trajectory rewards in Two-Level GRPO | Provides dense credit for useful reasoning, safe actions, efficient paths, and task completion |
+
+### Point: visual actions, metric execution
+
+The VLM observes four views covering 360 degrees, chooses the most relevant view, and predicts a pixel coordinate. Projecting that pixel through the aligned depth map produces a local 3D waypoint for the SLAM controller. This separation lets the learned policy focus on visual-semantic grounding rather than learning metric geometry implicitly.
+
+### Think and Memorize: adaptive cognition over long horizons
+
+TAMP-Nav treats reasoning events as memory anchors. A critical node retains its visual evidence, spatial-temporal state, and reasoning summary. Between anchors, redundant images are discarded and the traversed path is represented by lightweight Space-Time Indicators encoding position, orientation, and time. The resulting alternating anchor-trajectory sequence preserves both semantic landmarks and geometric connectivity.
+
+### Align: Two-Level GRPO
+
+<p align="center">
+  <img src="docs/img/two_level_grpo.png" alt="Two-Level GRPO with step-level and trajectory-level rollouts" width="100%">
+</p>
+
+<p align="center"><em>
+Two-Level GRPO superimposes local action advantages and global trajectory advantages across multi-branch rollouts.
+</em></p>
+
+At every decision point, the policy explores several candidate visual actions and receives local feedback. Complete rollouts receive global feedback for success, path efficiency, and reasoning density. Combining both levels reduces the credit-assignment gap between a final outcome and the intermediate decisions that produced it.
+
+| Optimization level | Signals | What it teaches |
+| --- | --- | --- |
+| **Local step** | Target approach, collision avoidance, stop correctness, reasoning value, output validity | Which action and reasoning choice is useful at the current state |
+| **Global trajectory** | Task success, SPL, reasoning density | Whether the complete plan is successful, efficient, and cognitively economical |
+| **Combined advantage** | Global advantage + local advantage | How local decisions contribute to long-term navigation quality |
+
+## Main Results
+
+All values below are reported in the anonymous manuscript on validation-unseen splits. Higher is better for OS, SR, SPL, and nDTW; lower is better for NE.
+
+### R2R-CE Val-Unseen
+
+| Method | NE (lower) | OS | SR | SPL |
+| --- | ---: | ---: | ---: | ---: |
+| StreamVLN | 4.98 | 64.2 | 56.9 | 51.9 |
+| NavFoM | 4.61 | 72.1 | 61.7 | 55.3 |
+| DualVLN | 4.05 | 70.7 | 64.3 | 58.5 |
+| TAMP-Nav (SFT only) | 4.88 | 62.0 | 55.7 | 50.3 |
+| **TAMP-Nav** | **3.85** | **74.5** | **66.2** | **58.8** |
+
+### RxR-CE Val-Unseen
+
+| Method | NE (lower) | SR | SPL | nDTW |
+| --- | ---: | ---: | ---: | ---: |
+| StreamVLN | 6.22 | 52.9 | 46.0 | 61.9 |
+| NavFoM | 4.74 | 64.4 | 56.2 | 65.8 |
+| DualVLN | 4.58 | 61.4 | 51.8 | 70.0 |
+| TAMP-Nav (SFT only) | 6.10 | 52.4 | 46.2 | 62.1 |
+| **TAMP-Nav** | **4.32** | **65.7** | **56.9** | **72.4** |
+
+The full framework improves R2R-CE success from **55.7% to 66.2%** over its SFT-only initialization, a gain of 10.5 percentage points from reinforcement-learning alignment.
+
+## What The Model Learns
+
+### Reasoning on demand
+
+<p align="center">
+  <img src="docs/img/reasoning_heatmap.png" alt="Spatial density of reasoning triggers before and after reinforcement learning" width="100%">
+</p>
+
+<p align="center"><em>
+Spatial density of reasoning triggers: SFT initialization (left) and RL-aligned TAMP-Nav (right).
+</em></p>
+
+| Trigger strategy | CoT ratio | R2R-CE SR |
+| --- | ---: | ---: |
+| Dense CoT | 100.0% | 66.8% |
+| Fixed interval (1/3) | 36.2% | 60.1% |
+| **Adaptive trigger (TAMP-Nav)** | **26.3%** | **66.2%** |
+
+Adaptive triggering nearly matches dense reasoning while invoking CoT on roughly one quarter of the steps. Spatial analysis further shows that reasoning assigned to straight corridors falls from **38% after SFT to 11% after RL alignment**, while triggers concentrate around intersections, doorways, and target-relevant regions.
+
+### Long-horizon memory
+
+The long-horizon subset contains 5,927 trajectories whose expert paths exceed 12.5 meters.
+
+| Memory or navigation variant | SR |
+| --- | ---: |
+| StreamVLN | 30.9 |
+| DualVLN | 41.9 |
+| TAMP-Nav with uniform sampling | 40.5 |
+| TAMP-Nav with full history | 42.4 |
+| TAMP-Nav without Space-Time Indicators | 45.6 |
+| **TAMP-Nav with Anchor-Trajectory Memory** | **49.8** |
+
+Explicit anchors preserve high-value semantic evidence, while Space-Time Indicators retain the geometry of compressed path segments. Removing the indicators reduces long-horizon SR by 4.2 percentage points.
+
+### Efficiency, robustness, and transfer
+
+| Evaluation | TAMP-Nav | Comparison or reference |
+| --- | ---: | --- |
+| Training scale | **90k trajectories / 700k interactions** | SFT cold start followed by Two-Level GRPO |
+| Average policy interactions per trajectory | **9** | Approximately 30 for StreamVLN and DualVLN |
+| Average inference time per task on one A800 | **16.58 s** | 37.47 s for StreamVLN; 41.46 s for DualVLN |
+| SR with 0.2 multiplicative depth noise | **63.4%** | 66.2% without noise |
+| Zero-shot real-world SR over 100 trials | **60.0%** | 49.0% for StreamVLN; 53.0% for DualVLN |
+
+The Two-Level GRPO analysis reports a final success reward of **0.59** with trajectory rewards alone, **0.64** after adding local step advantages, and **0.68** with the full annealed guided-sampling strategy.
+
+## Qualitative Examples
+
+### Simulation
+
+<p align="center">
+  <img src="docs/img/simulation_trajectory.png" alt="TAMP-Nav simulation trajectory with selected visual waypoints and sparse reasoning" width="92%">
+</p>
+
+<p align="center"><em>
+A simulated trajectory illustrating multi-view pixel actions and sparse reasoning at task-relevant decision points.
+</em></p>
+
+### Real world
+
+<p align="center">
+  <img src="docs/img/real_world_trajectory.png" alt="TAMP-Nav real-world navigation trajectory" width="68%">
+  <img src="docs/img/real_world_success.png" alt="Real-world success-rate comparison" width="29%">
+</p>
+
+<p align="center"><em>
+Zero-shot navigation in an unmapped real-world environment and success rates over 100 trials.
+</em></p>
+
+## Repository Structure
+
+| Path | Research role |
 | --- | --- |
-| `src/agent/` | Pixel-action agents, prompt construction, action parsing, and navigation memory |
-| `src/env/` | Habitat environment wrapper, VLN task extensions, metrics, and pixel-to-3D geometry |
-| `src/model/` | Customized Qwen2.5-VL model and tokenizer implementation; model weights are not included |
-| `src/train/` | Supervised fine-tuning and Two-Level GRPO training code |
-| `src/eval/` | Single- and multi-process evaluation with per-episode artifacts and aggregate metrics |
-| `src/dataset/` | Dataset readers, trajectory generation, CoT processing, and reward-log visualization |
-| `src/server/` | FastAPI policy service and an optional ROS 2 client for robot deployment |
-| `config/` | SFT, GRPO, DeepSpeed, R2R-CE, and RxR-CE configurations |
-| `scripts/` | Reference launchers for data preparation, training, evaluation, and serving |
-| `data/` | A 1,000-episode review subset with Habitat-style metadata and CoT/waypoint annotations |
+| <code>src/agent/</code> | Navigation policy, selective reasoning, action parsing, and memory |
+| <code>src/model/</code> | Navigation-adapted VLM implementation |
+| <code>src/train/</code> | SFT, Two-Level GRPO, and reward definitions |
+| <code>src/env/</code> and <code>src/eval/</code> | Continuous navigation environment, geometry, metrics, and evaluation |
+| <code>src/dataset/</code> and <code>data/</code> | MultiNav-CoT processing and an anonymized review subset |
+| <code>src/server/</code> | Interfaces between the high-level policy and embodied platforms |
+| <code>config/</code> and <code>scripts/</code> | Experiment configurations and research pipelines |
 
-## Environment
+## Artifact Scope
 
-Run all commands from the repository root. A pinned environment file is not part of this anonymous artifact, so install mutually compatible versions of PyTorch, CUDA, Habitat-Sim, and Habitat-Lab for the target machine.
-
-1. Create an isolated environment:
-
-   ```bash
-   conda create -n tamp-nav python=3.10 -y
-   conda activate tamp-nav
-   ```
-
-2. Install a CUDA-compatible build of [PyTorch](https://pytorch.org/get-started/locally/) and `torchvision`.
-
-3. Install matched versions of [Habitat-Sim](https://github.com/facebookresearch/habitat-sim) and [Habitat-Lab](https://github.com/facebookresearch/habitat-lab). The configuration files use Habitat's Hydra-based configuration API.
-
-4. Install the remaining core dependencies. Transformers `4.57.3` is the version recorded in the bundled model configuration.
-
-   ```bash
-   python -m pip install \
-     "transformers==4.57.3" trl accelerate datasets deepspeed peft \
-     liger-kernel wandb numpy numpy-quaternion scipy pillow imageio \
-     opencv-python tqdm pyyaml requests packaging regex
-
-   python -m pip install flash-attn --no-build-isolation
-   ```
-
-5. Install optional dependencies only for the corresponding utilities:
-
-   ```bash
-   # CoT post-processing and the HTTP policy service
-   python -m pip install openai fastapi "uvicorn[standard]"
-   ```
-
-   ROS 2 deployment additionally requires `rclpy`, `sensor_msgs`, `std_msgs`, and `tf2_ros` from a compatible ROS 2 installation. The optional depth service requires Depth Anything 3 and its model weights.
-
-The reference experiments used 8 NVIDIA A800 GPUs with 80 GB of memory per GPU. The paper reports approximately 160 GPU-hours for SFT and 600 GPU-hours for GRPO. Other hardware configurations require corresponding changes to GPU counts, batch sizes, gradient accumulation, and DeepSpeed settings.
-
-## Data preparation
-
-### Included review subset
-
-The repository includes two aligned 1,000-episode JSON files:
-
-- `data/train_92_split.json`: Habitat-style episodes, instructions, goals, poses, and reference trajectories.
-- `data/train_92_cot_split.json`: selective CoT, pixel projections, sensor poses, and compressed-trajectory metadata.
-
-Quick integrity check:
-
-```bash
-jq '.episodes | length' data/train_92_split.json
-jq 'length' data/train_92_cot_split.json
-```
-
-Both commands should print `1000`. Observation images, Matterport3D scenes, the complete MultiNav-CoT dataset, and the full GQA-derived auxiliary set are not redistributed in this review package. As noted in [`data/README.md`](data/README.md), the complete dataset is planned for release after paper acceptance.
-
-### Habitat assets
-
-Obtain Matterport3D scenes and R2R-CE/RxR-CE episodes under their original terms. The [official VLN-CE repository](https://github.com/jacobkrantz/VLN-CE) documents both datasets and their expected scene layout. The checked-in configurations expect paths equivalent to:
-
-```text
-data/share/habitat/
-├── scene_datasets/
-└── datasets/
-    ├── r2r/{split}/{split}.json.gz
-    └── rxr/{split}/{split}_guide_en.json.gz
-```
-
-Update `scenes_dir` and `data_path` in the selected `config/ht_dthink_*.yaml` file if assets are stored elsewhere.
-
-### Optional waypoint-data generation
-
-To generate pixel-waypoint episodes from a prepared Habitat split:
-
-```bash
-NPROC=1 bash scripts/run_generate_cot_dataset_pixel.sh \
-  config/ht_dthink_base.yaml \
-  runs/cot_pixel_sample \
-  sample \
-  auto
-```
-
-The wrapper enables overwrite mode. Use a new output directory, or inspect the script before pointing it at existing data.
-
-## Configure a run
-
-The checked-in YAML files preserve run-specific local paths. Before launching a job, review and replace at least the following fields:
-
-- `model_name_or_path` and `output_dir` in the SFT/GRPO configuration;
-- dataset paths in `config/sft_dthink_7b_pixel.yaml`;
-- `scenes_dir`, `data_path`, and `split` in the selected Habitat configuration;
-- GPU IDs, process counts, and ports in the shell launcher;
-- Weights & Biases settings, or disable `report_to` for offline runs.
-
-The upstream initialization model is [Qwen2.5-VL-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct). The local model implementation adds navigation-specific position encoding and action behavior; use a compatible prepared checkpoint when a configuration expects those additions.
-
-## Training
-
-### Stage 1: supervised fine-tuning
-
-After configuring the SFT initialization checkpoint and dataset paths:
-
-```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
-torchrun --nproc_per_node=8 \
-  -m src.train.sft_train \
-  --config config/sft_dthink_7b_pixel.yaml \
-  --model_name_or_path /path/to/initial-checkpoint \
-  --output_dir runs/tamp_nav_sft
-```
-
-The paper's SFT setting uses bf16, one epoch, a learning rate of `5e-6`, a per-device batch size of `1`, gradient accumulation of `32`, a 4,096-token context, gradient checkpointing, and Flash Attention 2.
-
-### Stage 2: Two-Level GRPO
-
-Point the GRPO configuration to the SFT checkpoint and a prepared Habitat training split, then run:
-
-```bash
-bash scripts/grpo_dthink_7b.sh \
-  config/grpo_dthink_7b.yaml \
-  --model_name_or_path /path/to/sft-checkpoint \
-  --output_dir runs/tamp_nav_grpo
-```
-
-The reference launcher uses eight processes. The supplied GRPO configuration records a trajectory group size of `8`, four step-level candidate actions, temperature `0.7`, top-p `0.9`, learning rate `2e-6`, 4,096 prompt tokens, 512 completion tokens, and no KL penalty.
-
-## Evaluation
-
-Use a single process for a smoke test:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 \
-torchrun --nproc_per_node=1 \
-  -m src.eval.evaluate_multi \
-  --env_config config/ht_dthink_r2r.yaml \
-  --checkpoint /path/to/checkpoint \
-  --save_root runs/eval_r2r \
-  --max_episodes 10 \
-  --temperature 0.4 \
-  --top_p 0.6
-```
-
-Remove `--max_episodes 10` for the complete split. Use `config/ht_dthink_rxr.yaml` for RxR-CE. Each episode directory contains `actions.jsonl` and `result.json`; the evaluation root contains aggregate metrics in `result.json`.
-
-[`scripts/run_evaluate.sh`](scripts/run_evaluate.sh) is the multi-GPU reference launcher. It is configured for seven workers and contains local default checkpoint/output paths, so pass explicit arguments or adapt it to the available hardware:
-
-```bash
-bash scripts/run_evaluate.sh \
-  config/ht_dthink_r2r.yaml \
-  /path/to/checkpoint \
-  runs/eval_r2r
-```
-
-## Reward dashboard
-
-GRPO writes per-rank JSONL logs under the run's `reward_logs` directory. Inspect them with the dependency-free local dashboard backend:
-
-```bash
-python src/dataset/visual/app.py \
-  --host 127.0.0.1 \
-  --port 18091 \
-  --log-dir runs/tamp_nav_grpo/reward_logs
-```
-
-Open `http://127.0.0.1:18091` in a browser. See [`src/dataset/visual/README.md`](src/dataset/visual/README.md) for the log schema and chart extension points.
-
-## HTTP policy service
-
-The FastAPI service exposes `/health`, `/reset`, `/step`, `/cam_info`, and optional depth endpoints. To serve a trained pixel-action policy without loading Depth Anything 3:
-
-```bash
-DTHINK_MODEL_PATH=/path/to/checkpoint \
-DTHINK_PRELOAD_DA3=0 \
-CUDA_VISIBLE_DEVICES=0 \
-python -m uvicorn src.server.pixel_agent_api:app \
-  --host 0.0.0.0 \
-  --port 11451
-```
-
-Check `http://127.0.0.1:11451/health` and use `http://127.0.0.1:11451/docs` for the generated request/response schema. Do not expose this unauthenticated research service directly to an untrusted network.
-
-## Reproducibility boundaries
-
-- Reported benchmark values require the full licensed Habitat assets, the complete training data, and trained checkpoints; these are not all present in the reduced review artifact.
-- Configuration files and shell scripts contain run-specific local paths and fixed GPU allocations. Review them before execution.
-- No exact dependency lockfile or container image is included. Record the final package versions and exact YAML used for every reproduced result.
-- Data-generation wrappers may use `--overwrite`; choose fresh output paths unless replacement is intentional.
-
-## Citation and license
-
-Citation metadata is withheld to preserve double-blind anonymity. No project-specific software or data license is included in this review artifact; treat the material as review-only unless and until an explicit license accompanies the public release. Upstream models, datasets, simulators, and third-party code remain subject to their respective licenses and terms of use.
+This repository is an anonymous review artifact. Author identities, affiliations, acknowledgements, personal project links, and citation metadata are intentionally withheld. The full licensed simulation assets, complete training corpus, model checkpoints, manuscript, and paper source are distributed separately and are not part of this repository.
