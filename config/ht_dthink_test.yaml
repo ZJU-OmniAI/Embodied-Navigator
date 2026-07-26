@@ -1,0 +1,131 @@
+defaults:
+  - /habitat: habitat_config_base
+  - /habitat/task: vln_r2r
+  - /habitat/simulator/sensor_setups@habitat.simulator.agents.main_agent: rgbd_agent
+  - /habitat/dataset/vln: mp3d_r2r
+  - /habitat/task/lab_sensors:
+    - gps_sensor
+    - compass_sensor
+  - _self_
+
+habitat:
+  environment:
+    max_episode_steps: 1000000
+    iterator_options:
+      max_scene_repeat_steps: 50000
+      shuffle: False
+
+  simulator:
+    agents:
+      main_agent:
+        sim_sensors:
+          rgb_front_sensor:
+            uuid: rgb_front
+            type: HabitatSimRGBSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, 0.0, 0.0]
+
+          rgb_right_sensor:
+            uuid: rgb_right
+            type: HabitatSimRGBSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, -1.5708, 0.0]
+
+          rgb_back_sensor:
+            uuid: rgb_back
+            type: HabitatSimRGBSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, 3.1416, 0.0]
+
+          rgb_left_sensor:
+            uuid: rgb_left
+            type: HabitatSimRGBSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, 1.5708, 0.0]
+
+          depth_front_sensor:
+            uuid: depth_front
+            type: HabitatSimDepthSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, 0.0, 0.0]
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: True
+
+          depth_right_sensor:
+            uuid: depth_right
+            type: HabitatSimDepthSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, -1.5708, 0.0]
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: True
+
+          depth_back_sensor:
+            uuid: depth_back
+            type: HabitatSimDepthSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, 3.1416, 0.0]
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: True
+
+          depth_left_sensor:
+            uuid: depth_left
+            type: HabitatSimDepthSensor
+            width: 280
+            height: 280
+            hfov: 100
+            position: [0.0, 1.25, 0.0]
+            orientation: [0.0, 1.5708, 0.0]
+            min_depth: 0.0
+            max_depth: 10.0
+            normalize_depth: True
+
+    forward_step_size: 0.25
+    turn_angle: 15
+    habitat_sim_v0:
+      gpu_device_id: 0
+
+  task:
+    measurements:
+      distance_to_goal:
+        type: DistanceToGoal
+        distance_to: POINT
+
+      success:
+        type: Success
+        success_distance: 3.0
+
+      oracle_success:
+        type: OracleSuccess
+        
+      oracle_navigation_error:
+        type: OracleNavigationError
+
+  dataset:
+    type: R2RVLN-v2
+    split: val_unseen
+    scenes_dir: data/share/habitat/scene_datasets
+    data_path: data/dthink_sft_data/r2xr_cot/test_r2r/grpo.json.gz

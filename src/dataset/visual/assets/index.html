@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DThinkVLN Reward Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">DThinkVLN · Training Insight</p>
+        <h1>Reward Monitor</h1>
+        <p class="sub">WandB-style timeline dashboard for GRPO `reward_logs`.</p>
+      </div>
+      <div class="hero-meta" id="meta-box">
+        <p><span>Log Dir</span><code id="meta-log-dir">-</code></p>
+        <p><span>Ranks</span><code id="meta-ranks">-</code></p>
+        <p><span>Cache</span><code id="meta-cache">-</code></p>
+      </div>
+    </header>
+
+    <section class="controls">
+      <label class="control-item wide">
+        <span>Log Directory</span>
+        <input type="text" id="log-dir-input" placeholder="runs/.../reward_logs" />
+      </label>
+      <label class="control-item">
+        <span>Ranks</span>
+        <div id="rank-chips" class="chips"></div>
+      </label>
+      <label class="control-item">
+        <span>Smoothing</span>
+        <input type="range" id="smooth-slider" min="1" max="200" step="1" value="1" />
+        <code id="smooth-value">1</code>
+      </label>
+      <button id="refresh-btn" class="btn">Refresh</button>
+    </section>
+
+    <section class="cards" id="cards"></section>
+    <section class="charts" id="charts"></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

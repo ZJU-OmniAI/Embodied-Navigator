@@ -1,0 +1,44 @@
+# ====== SFTConfig ======
+output_dir: runs/DThinkVLN-P-7B-SFT-S1-V114514_23/
+deepspeed: config/zero2.json
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 32
+learning_rate: 2e-5
+logging_steps: 1
+bf16: true
+# report_to: wandb
+gradient_checkpointing: true
+attn_implementation: flash_attention_2
+num_train_epochs: 1
+run_name: DThinkVLN-P-7B-SFT-S1-V2
+save_steps: 100
+max_length: 6144
+max_grad_norm: 5
+save_only_model: true
+dataloader_num_workers: 1
+
+# use_liger_kernel: true
+dataloader_persistent_workers: true
+
+# ====== LoRAConfig ======
+use_peft: true
+lora_r: 64
+lora_alpha: 128
+lora_dropout: 0.01
+lora_target_modules: ["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"]
+
+# ====== ModelConfig ======
+model_name_or_path: runs/DThinkVLN-P-7B-SFT-S1-V114514_20/checkpoint-200
+trust_remote_code: true
+torch_dtype: auto
+
+# ====== DatasetConfig ======
+dataset_merge_type: count_rand
+datasets:
+  - type: dthink_episode_pixel_stream
+    path: data/dthink_sft_data/data_buffer
+    splits: ["train"]
+    num_samples: 500000
+  - type: gqa_interleaved_cot
+    path: data/share/GQA_Interleaved_COT
+    splits: ["train_med_fixed", "train_easy", "train_hard"]
