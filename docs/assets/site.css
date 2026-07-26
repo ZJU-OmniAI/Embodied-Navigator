@@ -474,6 +474,20 @@ figcaption {
   line-height: 1.6;
 }
 
+.contribution-note {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #fef9f5;
+  border-left: 3px solid #b96420;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3a2817;
+}
+
+.contribution-note strong {
+  color: #2b1d14;
+}
+
 /* ---------- Abstract ---------- */
 
 .abstract-body {

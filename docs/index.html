@@ -162,6 +162,16 @@
           <strong>One-sentence contribution.</strong> TAMP-Nav aligns where a VLM points,
           when it thinks, what it remembers, and how its decisions receive feedback.
         </p>
+
+        <p class="contribution-note">
+          <strong>Note on system architecture.</strong> TAMP-Nav is a complete navigation
+          system. While the VLM observes RGB only, the full pipeline uses depth for
+          pixel-to-3D projection and odometry for Space-Time Indicator encoding. The policy
+          is trained on MultiNav-CoT, a 90k-trajectory dataset with Gemini 2.5 Flash–generated
+          Chain-of-Thought annotations. The Two-Level GRPO rewards rely on simulator signals
+          (geodesic distance, oracle success, SPL) that may not transfer directly to
+          unstructured real-world data without adaptation.
+        </p>
       </div>
     </section>
 
@@ -287,10 +297,15 @@
 
         <p class="setup-note">
           <strong>Setup.</strong> Qwen2.5-VL-7B base model, SFT cold start on MultiNav-CoT
+          (90k trajectories with Gemini 2.5 Flash–generated Chain-of-Thought annotations)
           followed by Two-Level GRPO, a 4,096-token context window, and NVIDIA A800 GPUs for
           training, evaluation, and deployment. Metrics are Navigation Error (NE), Oracle
           Success (OS), Success Rate (SR), Success weighted by Path Length (SPL), and
-          normalized Dynamic Time Warping (nDTW).
+          normalized Dynamic Time Warping (nDTW). <strong>Sensor modalities:</strong> The VLM
+          observes RGB only; the full system uses depth for pixel-to-3D projection and
+          odometry for STI encoding. Compared methods vary in their use of panoramic views,
+          depth input to the VLM, and odometry; TAMP-Nav uses four 90° RGB views (360° coverage),
+          depth for post-prediction projection, and odometry for memory encoding.
         </p>
 
         <div class="table-grid">
@@ -358,7 +373,10 @@
           <p>
             R2R-CE success improves from the SFT-only initialization at <strong>55.7%</strong>
             to <strong>66.2%</strong> with the full framework, isolating the contribution of
-            Two-Level GRPO alignment.
+            Two-Level GRPO alignment. The combined system integrates Pixel-to-3D projection,
+            selective reasoning, Anchor-Trajectory Memory, and the MultiNav-CoT dataset;
+            systematic component-wise ablations are provided in the manuscript (Section 4.4,
+            Appendix).
           </p>
         </div>
 
@@ -580,7 +598,11 @@
               Success rate across 100 blind trials run by an independent operator in
               unmapped indoor and outdoor environments, with human-annotated instructions;
               success is stopping within 1.5&nbsp;m of the target. TAMP-Nav 60.0% versus
-              StreamVLN 49.0% and DualVLN 53.0%.
+              StreamVLN 49.0% and DualVLN 53.0%. All baselines use the same Unitree Go2
+              hardware, four-camera RGB setup, D435i depth camera, Hesai LiDAR for dense
+              depth and localization (FastLIO odometry), and FAR Planner for local obstacle
+              avoidance. Task distribution and failure-mode analysis are provided in the
+              manuscript (Appendix D). Deployment videos will be added upon acceptance.
             </figcaption>
           </figure>
         </div>
@@ -633,9 +655,17 @@
             anonymized review subset, and the real-robot serving interfaces.
           </p>
           <p>
+            <strong>Key dependencies:</strong> The method is trained on MultiNav-CoT, a
+            90k-trajectory dataset with Gemini 2.5 Flash–generated Chain-of-Thought
+            annotations. The Two-Level GRPO rewards use simulator signals (geodesic distance,
+            oracle success, SPL) that require adaptation for real-world training. The full
+            system uses depth for pixel-to-3D projection and odometry for Space-Time
+            Indicator encoding, though the VLM observes RGB only.
+          </p>
+          <p>
             The full licensed simulation assets, the complete training corpus, model
-            checkpoints, the manuscript, and the paper source are distributed separately
-            and are not part of this repository.
+            checkpoints, deployment videos, the manuscript, and the paper source are
+            distributed separately and are not part of this repository.
           </p>
         </div>
       </div>
