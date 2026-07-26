@@ -814,20 +814,23 @@ tr.ours td {
 }
 
 .deployment-video {
-  max-width: 760px;
-  margin-top: 48px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 48px auto 0;
 }
 
 .deployment-video video {
   display: block;
-  width: 100%;
+  width: min(100%, 520px);
   height: auto;
+  margin: 0 auto;
   aspect-ratio: 1280 / 1380;
   border: 1px solid var(--line-strong);
   border-radius: 4px;
   background: #101412;
+}
+
+.deployment-video figcaption {
+  max-width: 620px;
+  text-align: center;
 }
 
 .evidence-strip {
