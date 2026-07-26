@@ -602,22 +602,31 @@
               hardware, four-camera RGB setup, D435i depth camera, Hesai LiDAR for dense
               depth and localization (FastLIO odometry), and FAR Planner for local obstacle
               avoidance. Task distribution and failure-mode analysis are provided in the
-              manuscript (Appendix D). Deployment videos will be added upon acceptance.
+              manuscript (Appendix D). A representative composite episode is shown below.
             </figcaption>
           </figure>
         </div>
 
-        <div class="video-placeholder">
-          <div class="placeholder-content">
-            <p class="placeholder-label">Deployment Videos</p>
-            <p class="placeholder-text">
-              Representative navigation trials on the Unitree Go2 quadruped in indoor and
-              outdoor environments will be published here upon acceptance. Videos show
-              multi-view RGB observations, selected pixel waypoints, reasoning traces, and
-              executed trajectories for TAMP-Nav and baseline methods.
-            </p>
-          </div>
-        </div>
+        <figure class="deployment-video">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            width="1280"
+            height="1380"
+            aria-label="Task-resampling navigation episode with four RGB views, model output, and a selected pixel waypoint"
+          >
+            <source src="img/task_resample_composite.mp4" type="video/mp4">
+            Your browser does not support embedded MP4 video.
+            <a href="img/task_resample_composite.mp4">Download the task-resampling video</a>.
+          </video>
+          <figcaption>
+            <span class="fig-label">Video 1.</span>
+            Task-resampling example. A representative indoor navigation episode showing
+            four synchronized RGB views, model reasoning and action outputs, and the
+            selected pixel waypoint across successive resampling rounds.
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -676,8 +685,8 @@
           </p>
           <p>
             The full licensed simulation assets, the complete training corpus, model
-            checkpoints, deployment videos, the manuscript, and the paper source are
-            distributed separately and are not part of this repository.
+            checkpoints, additional deployment videos, the manuscript, and the paper source
+            are distributed separately and are not part of this repository.
           </p>
         </div>
       </div>
