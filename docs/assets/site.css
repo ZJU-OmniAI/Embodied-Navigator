@@ -813,6 +813,35 @@ tr.ours td {
   font-size: 14px;
 }
 
+.video-placeholder {
+  margin-top: 48px;
+  padding: 32px 28px;
+  background: #f8f9fa;
+  border: 2px dashed #cbd5e0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.placeholder-content {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.placeholder-label {
+  margin: 0 0 12px;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.placeholder-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 .evidence-strip {
   margin-top: 42px;
 }
