@@ -32,27 +32,27 @@ At each navigation step, the policy combines four egocentric RGB views with a co
 
 | Component | Mechanism | Effect |
 | --- | --- | --- |
-| **Point** | Select a view and 2D pixel, then project it into 3D | Matches the VLM's 2D visual priors while leaving geometry and motion control to deterministic modules |
+| **Point** | For the first time, use pixel pointing as a bridge from VLM pre-training to VLN, then project the selected pixel into 3D | Smoothly transfers pretrained visual-grounding ability into VLN while leaving geometry and motion control to deterministic modules |
 | **Think** | Trigger Chain-of-Thought only at critical topological nodes | Concentrates computation on crossroads, doorways, and target-relevant decisions |
 | **Memorize** | Store critical states as visual-reasoning anchors and routine motion as Space-Time Indicators | Preserves long-horizon topology without retaining every visual frame |
-| **Align** | Combine local process rewards with global trajectory rewards in Two-Level GRPO | Provides dense credit for useful reasoning, safe actions, efficient paths, and task completion |
+| **RL** | Optimize the policy through reinforcement learning with Two-Level GRPO, combining local action and global trajectory advantages | Assigns credit from immediate decisions to final navigation success |
 
 ### Point: visual actions, metric execution
 
-The VLM observes four views covering 360 degrees, chooses the most relevant view, and predicts a pixel coordinate. Projecting that pixel through the aligned depth map produces a local 3D waypoint for the SLAM controller. This separation lets the learned policy focus on visual-semantic grounding rather than learning metric geometry implicitly.
+TAMP-Nav is the first to formulate pixel pointing as a natural bridge for smoothly transferring the VLM's visual-grounding ability acquired during pre-training to VLN. The VLM observes four views covering 360 degrees, chooses the most relevant view, and predicts a pixel coordinate. Projecting that pixel through the aligned depth map produces a local 3D waypoint for the SLAM controller. This separation lets the learned policy focus on visual-semantic grounding rather than learning metric geometry implicitly.
 
 ### Think and Memorize: adaptive cognition over long horizons
 
 TAMP-Nav treats reasoning events as memory anchors. A critical node retains its visual evidence, spatial-temporal state, and reasoning summary. Between anchors, redundant images are discarded and the traversed path is represented by lightweight Space-Time Indicators encoding position, orientation, and time. The resulting alternating anchor-trajectory sequence preserves both semantic landmarks and geometric connectivity.
 
-### Align: Two-Level GRPO
+### RL: Two-Level GRPO
 
 <p align="center">
   <img src="docs/img/two_level_grpo.png" alt="Two-Level GRPO with step-level and trajectory-level rollouts" width="100%">
 </p>
 
 <p align="center"><em>
-Two-Level GRPO superimposes local action advantages and global trajectory advantages across multi-branch rollouts.
+Two-Level GRPO is a reinforcement-learning objective that superimposes local action advantages and global trajectory advantages across multi-branch rollouts.
 </em></p>
 
 At every decision point, the policy explores several candidate visual actions and receives local feedback. Complete rollouts receive global feedback for success, path efficiency, and reasoning density. Combining both levels reduces the credit-assignment gap between a final outcome and the intermediate decisions that produced it.

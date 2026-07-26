@@ -137,30 +137,31 @@
           </p>
           <p>
             First, we introduce a <strong>Pixel-to-3D Action Formulation</strong> (<em>Point</em>)
-            that reformulates navigation into 2D visual prompting. Specifically, the VLM merely
-            selects 2D pixels, which are then projected into 3D coordinates for a low-level SLAM
-            controller. This design naturally aligns embodied execution with the VLM's inherent
-            2D visual capabilities. Second, we propose an integrated <strong>Selective Reasoning
-            and Anchor-Trajectory Memory</strong> mechanism (<em>Think</em> and <em>Memorize</em>),
-            which dynamically triggers Chain-of-Thought and retains high-fidelity memory only at
-            critical nodes, compressing redundant trajectories into lightweight
-            <strong>Space-Time Indicators</strong>, thereby preserving critical historical
-            information and enhancing spatio-temporal perception.
+            that, for the first time, treats pixel pointing as a natural bridge for smoothly
+            transferring visual-grounding capabilities acquired during VLM pre-training to VLN.
+            Specifically, the VLM selects 2D pixels, which are then projected into 3D coordinates
+            for a low-level SLAM controller. Second, we propose an integrated
+            <strong>Selective Reasoning and Anchor-Trajectory Memory</strong> mechanism
+            (<em>Think</em> and <em>Memorize</em>), which dynamically triggers Chain-of-Thought and
+            retains high-fidelity memory only at critical nodes, compressing redundant
+            trajectories into lightweight <strong>Space-Time Indicators</strong>, thereby
+            preserving critical historical information and enhancing spatio-temporal perception.
           </p>
           <p>
-            Finally, we design an efficient <strong>Two-Level Alignment Paradigm</strong>
-            (<em>Align</em>) via Group Relative Policy Optimization (GRPO). By superimposing
-            global outcome rewards with fine-grained process rewards, this dense supervision
-            tightly aligns the agent's cognitive planning with physical environmental feedback,
-            endowing the model with adaptive reasoning capabilities. Experiments demonstrate that
-            TAMP-Nav achieves state-of-the-art performance (e.g., 66.2% SR on R2R-CE) with high
-            runtime and sample efficiency (requiring only 90k training trajectories).
+            Finally, we design an efficient <strong>Two-Level Reinforcement Learning Alignment
+            Paradigm</strong> (<em>Align</em>) based on Group Relative Policy Optimization (GRPO).
+            By superimposing global outcome rewards with fine-grained process rewards, this dense
+            supervision tightly aligns the agent's cognitive planning with physical environmental
+            feedback, endowing the model with adaptive reasoning capabilities. Experiments
+            demonstrate that TAMP-Nav achieves state-of-the-art performance (e.g., 66.2% SR on
+            R2R-CE) with high runtime and sample efficiency (requiring only 90k training
+            trajectories).
           </p>
         </div>
 
         <p class="contribution">
           <strong>One-sentence contribution.</strong> TAMP-Nav aligns where a VLM points,
-          when it thinks, what it remembers, and how its decisions receive feedback.
+          when it thinks, what it remembers, and how reinforcement learning credits its decisions.
         </p>
 
         <p class="contribution-note">
@@ -192,10 +193,13 @@
             <p class="component-letter">P</p>
             <h3>Point</h3>
             <p>
-              Select one of four RGB views and a 2D pixel waypoint. Depth is used only
-              afterward to project the prediction into 3D for the SLAM controller.
+              Treat pixel pointing as a bridge from VLM pre-training to VLN: select one of
+              four RGB views and a 2D waypoint, then use depth only afterward for 3D
+              projection and SLAM execution.
             </p>
-            <p class="component-effect">Aligns action prediction with 2D visual priors.</p>
+            <p class="component-effect">
+              First to smoothly transfer pretrained grounding into VLN through pixel pointing.
+            </p>
           </article>
           <article class="component component-think">
             <p class="component-letter">T</p>
@@ -217,12 +221,15 @@
           </article>
           <article class="component component-align">
             <p class="component-letter">A</p>
-            <h3>Align</h3>
+            <h3>RL</h3>
             <p>
-              Superimpose local action advantages and global trajectory advantages across
-              multi-branch Two-Level GRPO rollouts.
+              Optimize the policy through reinforcement learning with Two-Level GRPO,
+              superimposing local action and global trajectory advantages across multi-branch
+              rollouts.
             </p>
-            <p class="component-effect">Bridges immediate decisions and final success.</p>
+            <p class="component-effect">
+              Assigns credit from immediate decisions to final navigation success.
+            </p>
           </article>
         </div>
       </div>
