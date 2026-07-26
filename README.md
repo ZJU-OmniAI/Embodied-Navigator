@@ -35,7 +35,7 @@ At each navigation step, the policy combines four egocentric RGB views with a co
 | **Point** | For the first time, use pixel pointing as a bridge from VLM pre-training to VLN, then project the selected pixel into 3D | Smoothly transfers pretrained visual-grounding ability into VLN while leaving geometry and motion control to deterministic modules |
 | **Think** | Trigger Chain-of-Thought only at critical topological nodes | Concentrates computation on crossroads, doorways, and target-relevant decisions |
 | **Memorize** | Store critical states as visual-reasoning anchors and routine motion as Space-Time Indicators | Preserves long-horizon topology without retaining every visual frame |
-| **RL** | Optimize the policy through reinforcement learning with Two-Level GRPO, combining local action and global trajectory advantages | Assigns credit from immediate decisions to final navigation success |
+| **Align** | Optimize the policy through reinforcement learning with Two-Level GRPO, combining local action and global trajectory advantages | Assigns credit from immediate decisions to final navigation success |
 
 ### Point: visual actions, metric execution
 
@@ -45,7 +45,7 @@ TAMP-Nav is the first to formulate pixel pointing as a natural bridge for smooth
 
 TAMP-Nav treats reasoning events as memory anchors. A critical node retains its visual evidence, spatial-temporal state, and reasoning summary. Between anchors, redundant images are discarded and the traversed path is represented by lightweight Space-Time Indicators encoding position, orientation, and time. The resulting alternating anchor-trajectory sequence preserves both semantic landmarks and geometric connectivity.
 
-### RL: Two-Level GRPO
+### Align: Two-Level GRPO
 
 <p align="center">
   <img src="docs/img/two_level_grpo.png" alt="Two-Level GRPO with step-level and trajectory-level rollouts" width="100%">
