@@ -163,14 +163,149 @@ Zero-shot navigation in an unmapped real-world environment and success rates ove
 
 | Path | Research role |
 | --- | --- |
-| <code>src/agent/</code> | Navigation policy, selective reasoning, action parsing, and memory |
-| <code>src/model/</code> | Navigation-adapted VLM implementation |
-| <code>src/train/</code> | SFT, Two-Level GRPO, and reward definitions |
-| <code>src/env/</code> and <code>src/eval/</code> | Continuous navigation environment, geometry, metrics, and evaluation |
-| <code>src/dataset/</code> and <code>data/</code> | MultiNav-CoT processing and an anonymized review subset |
-| <code>src/server/</code> | Interfaces between the high-level policy and embodied platforms |
-| <code>config/</code> and <code>scripts/</code> | Experiment configurations and research pipelines |
+| `src/agent/` | Navigation policy, selective reasoning, action parsing, and memory |
+| `src/model/` | Navigation-adapted Qwen2.5-VL implementation |
+| `src/train/` | SFT, Two-Level GRPO, and reward definitions |
+| `src/env/` | Continuous navigation environment and geometry utilities |
+| `src/eval/` | Evaluation harness and metrics (NE, OS, SR, SPL, nDTW) |
+| `src/dataset/` | MultiNav-CoT processing pipeline and dataset loaders |
+| `src/server/` | Real-robot FastAPI service and ROS2 client |
+| `config/` | Experiment configurations (SFT, GRPO, eval) |
+| `scripts/` | Training and evaluation shell scripts |
+| `data/` | Anonymized review subset (full dataset post-acceptance) |
+| `docs/` | Project homepage and style guide |
+| `paper/` | LaTeX manuscript source (anonymized) |
+
+## Getting Started
+
+### Prerequisites
+
+```bash
+# Core dependencies
+Python 3.10+
+PyTorch 2.0+
+Habitat-Lab 0.3.0
+Transformers 4.40+
+
+# See requirements.txt for complete list
+```
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd TAMP-Nav
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Download anonymized data subset
+# (90k MultiNav-CoT subset provided for review)
+```
+
+### Quick Start
+
+```bash
+# Supervised fine-tuning
+bash scripts/sft_train.sh config/sft_dthink_7b.yaml
+
+# Two-Level GRPO alignment
+bash scripts/grpo_train.sh config/grpo_dthink_7b.yaml
+
+# Evaluation
+bash scripts/evaluate.sh config/eval_r2r_ce.yaml
+```
+
+See `CLAUDE.md` for detailed setup instructions and configuration options.
+
+## Key Components
+
+### Training Pipeline
+
+1. **Supervised Fine-Tuning (SFT)**
+   - Base model: Qwen2.5-VL-7B
+   - Dataset: MultiNav-CoT (90k trajectories with Gemini 2.5 Flash–generated CoT)
+   - Output: Policy initialization for RL
+
+2. **Two-Level GRPO Alignment**
+   - Local step rewards: target approach, collision avoidance, stop correctness, reasoning value
+   - Global trajectory rewards: success, SPL, reasoning density
+   - Annealed guided sampling with β schedule
+
+3. **Evaluation Harness**
+   - Benchmarks: R2R-CE, RxR-CE val-unseen splits
+   - Metrics: NE, OS, SR, SPL, nDTW
+   - Multi-GPU support via torchrun
+
+### Real-Robot Deployment
+
+The `src/server/` directory contains interfaces for physical robot deployment:
+
+- FastAPI service for `/reset` and `/step` endpoints
+- ROS2 client for Unitree Go2 quadruped
+- Integration with D435i depth camera and Hesai LiDAR
+- FastLIO odometry and FAR Planner obstacle avoidance
+
+Zero-shot real-world deployment requires no robot-specific fine-tuning.
+
+## Project Homepage
+
+Visit `docs/index.html` for the full project page with:
+- Interactive figure viewer
+- Detailed method description
+- Complete results tables
+- Qualitative examples
+
+To preview locally:
+```bash
+cd docs
+python3 -m http.server 8000
+# Open http://localhost:8000
+```
+
+For design system documentation, see `docs/STYLE_GUIDE.md`.
+
+## Citation
+
+Citation metadata is anonymized during review and will be replaced on acceptance.
+
+```bibtex
+@inproceedings{anonymous2026tampnav,
+  title     = {TAMP-Nav: Point, Think, Memorize, and Align
+               for Efficient Embodied Navigation},
+  author    = {Anonymous Authors},
+  booktitle = {Under double-blind review},
+  year      = {2026},
+  note      = {Author and venue metadata withheld during review}
+}
+```
 
 ## Artifact Scope
 
-This repository is an anonymous review artifact. Author identities, affiliations, acknowledgements, personal project links, and citation metadata are intentionally withheld. The full licensed simulation assets, complete training corpus, model checkpoints, manuscript, and paper source are distributed separately and are not part of this repository.
+This repository is an anonymous review artifact. Author identities, affiliations, acknowledgements, personal project links, and citation metadata are intentionally withheld.
+
+**Included in this artifact:**
+- Navigation policy implementation (`src/agent/`)
+- Navigation-adapted VLM (`src/model/`)
+- SFT and Two-Level GRPO training code (`src/train/`)
+- Continuous-navigation environment and evaluation (`src/env/`, `src/eval/`)
+- MultiNav-CoT processing pipeline with anonymized review subset (`src/dataset/`, `data/`)
+- Real-robot serving interfaces (`src/server/`)
+- Experiment configurations and scripts (`config/`, `scripts/`)
+
+**Distributed separately (post-acceptance):**
+- Full licensed Habitat-Matterport3D simulation assets
+- Complete 90k-trajectory MultiNav-CoT dataset
+- Pre-trained model checkpoints
+- Deployment videos from 100 real-world trials
+- Full manuscript and LaTeX source
+
+**Key dependencies:**
+- The method is trained on MultiNav-CoT, which uses Gemini 2.5 Flash–generated Chain-of-Thought annotations
+- The Two-Level GRPO rewards use simulator signals (geodesic distance, oracle success, SPL) that require adaptation for real-world training
+- The full system uses depth for pixel-to-3D projection and odometry for Space-Time Indicator encoding, though the VLM observes RGB only
+
+## License
+
+License information will be provided upon acceptance. This artifact is provided for review purposes only.
