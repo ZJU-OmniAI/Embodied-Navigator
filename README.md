@@ -159,6 +159,23 @@ A simulated trajectory illustrating multi-view pixel actions and sparse reasonin
 Zero-shot navigation in an unmapped real-world environment and success rates over 100 trials.
 </em></p>
 
+### Real-world deployment videos
+
+Six representative zero-shot trials on the Unitree Go2 quadruped, drawn from the
+100-episode real-world evaluation. Each video shows the synchronized multi-view RGB
+observations, the selected pixel waypoints with reasoning traces, and the executed
+trajectory. Success examples are listed first; the failure case is listed last.
+The same videos play inline on the [project homepage](docs/index.html).
+
+| # | Video | Scene | Notes |
+| --- | --- | --- | --- |
+| 1 | [cross-scenario.mp4](docs/img/cross-scenario.mp4) | Cross-scenario | Long-horizon episode with an indoor-to-outdoor transition |
+| 2 | [hall.mp4](docs/img/hall.mp4) | Indoor hall | Long-corridor navigation with sparse reasoning |
+| 3 | [meeting-room.mp4](docs/img/meeting-room.mp4) | Meeting room | Meeting-room navigation |
+| 4 | [outdoors.mp4](docs/img/outdoors.mp4) | Outdoors | Outdoor scene navigation |
+| 5 | [playground.mp4](docs/img/playground.mp4) | Laboratory test area | Indoor laboratory test-area navigation |
+| 6 | [outdoors-failed.mp4](docs/img/outdoors-failed.mp4) | Outdoors (**failure case**) | The policy selects an occluded waypoint, oscillates between two waypoints, and requires human intervention |
+
 ## Repository Structure
 
 | Path | Research role |
@@ -173,7 +190,7 @@ Zero-shot navigation in an unmapped real-world environment and success rates ove
 | `config/` | Experiment configurations (SFT, GRPO, eval) |
 | `scripts/` | Training and evaluation shell scripts |
 | `data/` | Anonymized review subset (full dataset post-acceptance) |
-| `docs/` | Project homepage and style guide |
+| `docs/` | Project homepage (figures and deployment videos) |
 | `paper/` | LaTeX manuscript source (anonymized) |
 
 ## Getting Started
@@ -255,7 +272,7 @@ Visit `docs/index.html` for the full project page with:
 - Interactive figure viewer
 - Detailed method description
 - Complete results tables
-- Qualitative examples
+- Qualitative examples and deployment videos
 
 To preview locally:
 ```bash
@@ -264,7 +281,7 @@ python3 -m http.server 8000
 # Open http://localhost:8000
 ```
 
-For design system documentation, see `docs/STYLE_GUIDE.md`.
+Page conventions for maintainers are documented in `docs/README.md`.
 
 ## Citation
 
@@ -298,7 +315,7 @@ This repository is an anonymous review artifact. Author identities, affiliations
 - Full licensed Habitat-Matterport3D simulation assets
 - Complete 90k-trajectory MultiNav-CoT dataset
 - Pre-trained model checkpoints
-- Deployment videos from 100 real-world trials
+- Complete recordings of all 100 real-world trials (six representative videos are included in `docs/img/`)
 - Full manuscript and LaTeX source
 
 **Key dependencies:**

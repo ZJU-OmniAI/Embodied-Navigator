@@ -609,31 +609,129 @@
               hardware, four-camera RGB setup, D435i depth camera, Hesai LiDAR for dense
               depth and localization (FastLIO odometry), and FAR Planner for local obstacle
               avoidance. Task distribution and failure-mode analysis are provided in the
-              manuscript (Appendix D). A representative composite episode is shown below.
+              manuscript (Appendix D). Representative deployment videos are shown below.
             </figcaption>
           </figure>
         </div>
 
-        <figure class="deployment-video">
-          <video
-            controls
-            playsinline
-            preload="metadata"
-            width="1280"
-            height="1380"
-            aria-label="Task-resampling navigation episode with four RGB views, model output, and a selected pixel waypoint"
-          >
-            <source src="img/task_resample_composite.mp4" type="video/mp4">
-            Your browser does not support embedded MP4 video.
-            <a href="img/task_resample_composite.mp4">Download the task-resampling video</a>.
-          </video>
-          <figcaption>
-            <span class="fig-label">Video 1.</span>
-            Task-resampling example. A representative indoor navigation episode showing
-            four synchronized RGB views, model reasoning and action outputs, and the
-            selected pixel waypoint across successive resampling rounds.
-          </figcaption>
-        </figure>
+        <h3 class="video-heading" id="videos">Real-World Deployment Videos</h3>
+        <p class="block-note video-intro">
+          Representative trials from the 100-episode real-world evaluation on the
+          Unitree Go2 quadruped, executed zero-shot in unmapped environments. Success
+          examples are shown first; a representative failure case is shown last.
+        </p>
+
+        <div class="video-grid">
+          <figure class="deployment-video">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1280"
+              height="1380"
+              aria-label="Cross-scenario navigation: indoor to outdoor transition"
+            >
+              <source src="img/cross-scenario.mp4" type="video/mp4">
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>
+              <span class="fig-label">Video 1.</span>
+              Cross-scenario navigation with indoor-to-outdoor transition.
+            </figcaption>
+          </figure>
+
+          <figure class="deployment-video">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1280"
+              height="1380"
+              aria-label="Hall navigation with long corridor"
+            >
+              <source src="img/hall.mp4" type="video/mp4">
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>
+              <span class="fig-label">Video 2.</span>
+              Indoor hall navigation with long-corridor reasoning.
+            </figcaption>
+          </figure>
+
+          <figure class="deployment-video">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1280"
+              height="1380"
+              aria-label="Meeting room navigation"
+            >
+              <source src="img/meeting-room.mp4" type="video/mp4">
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>
+              <span class="fig-label">Video 3.</span>
+              Meeting-room navigation.
+            </figcaption>
+          </figure>
+
+          <figure class="deployment-video">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1280"
+              height="1380"
+              aria-label="Outdoor scene navigation"
+            >
+              <source src="img/outdoors.mp4" type="video/mp4">
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>
+              <span class="fig-label">Video 4.</span>
+              Outdoor scene navigation.
+            </figcaption>
+          </figure>
+
+          <figure class="deployment-video">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1280"
+              height="1380"
+              aria-label="Indoor laboratory test-area navigation"
+            >
+              <source src="img/playground.mp4" type="video/mp4">
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>
+              <span class="fig-label">Video 5.</span>
+              Indoor laboratory test-area navigation.
+            </figcaption>
+          </figure>
+
+          <figure class="deployment-video failure-case">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="1280"
+              height="1380"
+              aria-label="Outdoor navigation failure case"
+            >
+              <source src="img/outdoors-failed.mp4" type="video/mp4">
+              Your browser does not support embedded MP4 video.
+            </video>
+            <figcaption>
+              <span class="fig-label">Video 6.</span>
+              Representative failure case: outdoor navigation where the policy selects
+              an occluded waypoint leading to a local minimum. The robot requires human
+              intervention after repeated oscillation between two waypoints.
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 

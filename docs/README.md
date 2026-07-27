@@ -1,13 +1,12 @@
 # TAMP-Nav Project Homepage
 
-Anonymous research artifact homepage for NeurIPS 2026 submission.
+Anonymous research artifact homepage for double-blind review.
 
 ## Quick Links
 
-- **Live page:** `docs/index.html`
-- **Style guide:** `docs/STYLE_GUIDE.md` — Read this before making changes
-- **Assets:** `docs/assets/` (site.css, site.js)
-- **Images:** `docs/img/` (all figures)
+- **Live page:** `index.html`
+- **Assets:** `assets/` (site.css, site.js)
+- **Media:** `img/` (figures and deployment videos)
 
 ## Local Preview
 
@@ -21,51 +20,30 @@ python3 -m http.server 8000
 
 ```
 docs/
-├── index.html              # Main page (31 KB)
-├── STYLE_GUIDE.md          # Style guide for maintainers
+├── index.html              # Main page
 ├── README.md               # This file
 ├── assets/
-│   ├── site.css            # All styles (38 KB)
-│   └── site.js             # Interactions (2 KB)
-└── img/                    # Figures (6 files, ~8 MB total)
+│   ├── site.css            # All styles (vanilla CSS, no build step)
+│   └── site.js             # Lightbox + BibTeX copy + scroll-spy
+└── img/
+    ├── *.png               # Figures 1–6
+    └── *.mp4               # Deployment videos 1–6 (failure case last)
 ```
 
-## Recent Updates (2026-07-26)
+## Page Conventions
 
-Homepage refactored to address NeurIPS 2026 reviewer feedback:
+- **Academic paper layout** — numbered sections, `Figure N.` / `Table N.` / `Video N.` labels, centered serif abstract, resource-link row, BibTeX block
+- **Neutral palette** — white background, light gray alternating bands, earth-tone accents; the failure-case video uses the rust accent (`--rust`)
+- **Videos** — `.video-grid` (3 columns → 2 → 1 responsive) of `.deployment-video` figures; `controls playsinline preload="metadata"`, aspect ratio 1280/1380; keep success examples first and the failure case (`.failure-case`) last
+- **Accessibility** — semantic HTML, ARIA labels, keyboard navigation, WCAG AA contrast
+- **No marketing patterns** — no gradients, CTAs, or SaaS styling
 
-1. **System architecture transparency** — Added note box in abstract explaining VLM vs. full-system modalities
-2. **Sensor modality clarification** — Explicit statement in results section
-3. **Component attribution** — Points to manuscript ablations
-4. **Real-world evaluation details** — Expanded Figure 6 caption with hardware stack details
-5. **Dataset & reward dependencies** — Added key dependencies paragraph in artifact section
-6. **Video placeholder** — Visible box for deployment videos (to be added post-acceptance)
+## Maintenance Notes
 
-All changes documented in `STYLE_GUIDE.md`.
-
-## Design Principles
-
-- **Academic paper conventions** — Numbered sections/figures/tables, centered abstract, serif typography
-- **Neutral palette** — White background, earth-tone accents (#b96420, #2b1d14)
-- **Accessibility-first** — WCAG AA contrast, semantic HTML, keyboard navigation
-- **No marketing patterns** — No purple gradients, green CTAs, or SaaS aesthetics
-
-See `STYLE_GUIDE.md` for complete design system documentation.
-
-## Deployment
-
-This is a static site. To deploy:
-
-1. Commit all changes to git
-2. Push to repository (GitHub Pages, static hosting, etc.)
-3. No build step required
-
-## Notes for Future Updates
-
-- **Adding videos:** Replace `.video-placeholder` content with actual `<video>` elements
-- **Updating numbers:** Cross-check against `paper/TAMP-Nav/en.tex` manuscript
-- **New figures/tables:** Follow templates in `STYLE_GUIDE.md`, increment numbers sequentially
-- **Style changes:** Read the style guide first to maintain consistency
+- **Numbers:** cross-check every metric against `paper/TAMP-Nav/en.tex` before editing
+- **New figures/tables/videos:** follow the existing markup patterns and renumber sequentially
+- **Adding videos:** append `<figure class="deployment-video">` blocks inside `.video-grid`; keep the failure case last
+- **Anonymity:** no author names, affiliations, links, or identifying metadata until acceptance
 
 ## Validation
 
@@ -73,16 +51,15 @@ Before pushing:
 
 ```bash
 # Check HTML validity
-tidy -q -e docs/index.html
+tidy -q -e index.html
 
-# Check image optimization
-du -sh docs/img/*
+# Check media sizes (GitHub blocks single files over 100 MB)
+du -sh img/*
 
 # Test responsive breakpoints
-# Open in browser, test at 1200px, 768px, 480px widths
+# Open in browser, test at 1440px, 980px, 720px widths
 ```
 
 ---
 
-**Maintainer:** Anonymous (double-blind review)  
-**Last updated:** 2026-07-26
+**Maintainer:** Anonymous (double-blind review)
