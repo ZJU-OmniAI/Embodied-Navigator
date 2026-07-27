@@ -1,9 +1,11 @@
 (() => {
   const dialog = document.querySelector("[data-lightbox-dialog]");
   const dialogImage = document.querySelector("[data-lightbox-image]");
+  const dialogPlayer = document.querySelector("[data-lightbox-player]");
   const dialogCaption = document.querySelector("[data-lightbox-caption]");
   const closeButton = document.querySelector("[data-lightbox-close]");
   const figureButtons = document.querySelectorAll("[data-lightbox]");
+  const videoButtons = document.querySelectorAll("[data-lightbox-video]");
   let returnFocus = null;
 
   const closeLightbox = () => {
@@ -15,6 +17,13 @@
     document.body.classList.remove("lightbox-open");
     dialogImage.removeAttribute("src");
     dialogImage.alt = "";
+    dialogImage.hidden = false;
+    if (dialogPlayer) {
+      dialogPlayer.pause();
+      dialogPlayer.removeAttribute("src");
+      dialogPlayer.load();
+      dialogPlayer.hidden = true;
+    }
     dialogCaption.textContent = "";
 
     if (returnFocus) {
@@ -32,14 +41,40 @@
     returnFocus = button;
     dialogImage.src = button.dataset.lightbox;
     dialogImage.alt = sourceImage ? sourceImage.alt : "Expanded research figure";
+    dialogImage.hidden = false;
+    if (dialogPlayer) {
+      dialogPlayer.hidden = true;
+    }
     dialogCaption.textContent = button.dataset.caption || "";
     dialog.hidden = false;
     document.body.classList.add("lightbox-open");
     closeButton.focus();
   };
 
+  const openVideoLightbox = (button) => {
+    if (!dialog || !dialogPlayer) {
+      return;
+    }
+
+    returnFocus = button;
+    dialogImage.removeAttribute("src");
+    dialogImage.alt = "";
+    dialogImage.hidden = true;
+    dialogPlayer.src = button.dataset.lightboxVideo;
+    dialogPlayer.hidden = false;
+    dialogCaption.textContent = button.dataset.caption || "";
+    dialog.hidden = false;
+    document.body.classList.add("lightbox-open");
+    dialogPlayer.play().catch(() => {});
+    dialogPlayer.focus();
+  };
+
   figureButtons.forEach((button) => {
     button.addEventListener("click", () => openLightbox(button));
+  });
+
+  videoButtons.forEach((button) => {
+    button.addEventListener("click", () => openVideoLightbox(button));
   });
 
   if (closeButton) {
@@ -64,8 +99,19 @@
     }
 
     if (event.key === "Tab") {
+      const playerVisible = dialogPlayer && !dialogPlayer.hidden;
+      if (!playerVisible) {
+        event.preventDefault();
+        closeButton.focus();
+        return;
+      }
+      // Cycle focus between the close button and the video player controls.
       event.preventDefault();
-      closeButton.focus();
+      if (document.activeElement === dialogPlayer) {
+        closeButton.focus();
+      } else {
+        dialogPlayer.focus();
+      }
     }
   });
 

@@ -623,17 +623,19 @@
 
         <div class="video-grid">
           <figure class="deployment-video">
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              width="1280"
-              height="1380"
-              aria-label="Cross-scenario navigation: indoor to outdoor transition"
+            <button
+              class="video-button"
+              type="button"
+              data-lightbox-video="img/cross-scenario.mp4"
+              data-caption="Video 1. Cross-scenario navigation with indoor-to-outdoor transition."
+              aria-label="Play Video 1, cross-scenario navigation, enlarged"
+              title="Play enlarged"
             >
-              <source src="img/cross-scenario.mp4" type="video/mp4">
-              Your browser does not support embedded MP4 video.
-            </video>
+              <video preload="metadata" muted playsinline tabindex="-1" width="1280" height="1380">
+                <source src="img/cross-scenario.mp4" type="video/mp4">
+              </video>
+              <span class="play-mark" aria-hidden="true">&#9654;</span>
+            </button>
             <figcaption>
               <span class="fig-label">Video 1.</span>
               Cross-scenario navigation with indoor-to-outdoor transition.
@@ -641,17 +643,19 @@
           </figure>
 
           <figure class="deployment-video">
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              width="1280"
-              height="1380"
-              aria-label="Hall navigation with long corridor"
+            <button
+              class="video-button"
+              type="button"
+              data-lightbox-video="img/hall.mp4"
+              data-caption="Video 2. Indoor hall navigation with long-corridor reasoning."
+              aria-label="Play Video 2, indoor hall navigation, enlarged"
+              title="Play enlarged"
             >
-              <source src="img/hall.mp4" type="video/mp4">
-              Your browser does not support embedded MP4 video.
-            </video>
+              <video preload="metadata" muted playsinline tabindex="-1" width="1280" height="1380">
+                <source src="img/hall.mp4" type="video/mp4">
+              </video>
+              <span class="play-mark" aria-hidden="true">&#9654;</span>
+            </button>
             <figcaption>
               <span class="fig-label">Video 2.</span>
               Indoor hall navigation with long-corridor reasoning.
@@ -659,17 +663,19 @@
           </figure>
 
           <figure class="deployment-video">
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              width="1280"
-              height="1380"
-              aria-label="Meeting room navigation"
+            <button
+              class="video-button"
+              type="button"
+              data-lightbox-video="img/meeting-room.mp4"
+              data-caption="Video 3. Meeting-room navigation."
+              aria-label="Play Video 3, meeting-room navigation, enlarged"
+              title="Play enlarged"
             >
-              <source src="img/meeting-room.mp4" type="video/mp4">
-              Your browser does not support embedded MP4 video.
-            </video>
+              <video preload="metadata" muted playsinline tabindex="-1" width="1280" height="1380">
+                <source src="img/meeting-room.mp4" type="video/mp4">
+              </video>
+              <span class="play-mark" aria-hidden="true">&#9654;</span>
+            </button>
             <figcaption>
               <span class="fig-label">Video 3.</span>
               Meeting-room navigation.
@@ -677,17 +683,19 @@
           </figure>
 
           <figure class="deployment-video">
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              width="1280"
-              height="1380"
-              aria-label="Outdoor scene navigation"
+            <button
+              class="video-button"
+              type="button"
+              data-lightbox-video="img/outdoors.mp4"
+              data-caption="Video 4. Outdoor scene navigation."
+              aria-label="Play Video 4, outdoor scene navigation, enlarged"
+              title="Play enlarged"
             >
-              <source src="img/outdoors.mp4" type="video/mp4">
-              Your browser does not support embedded MP4 video.
-            </video>
+              <video preload="metadata" muted playsinline tabindex="-1" width="1280" height="1380">
+                <source src="img/outdoors.mp4" type="video/mp4">
+              </video>
+              <span class="play-mark" aria-hidden="true">&#9654;</span>
+            </button>
             <figcaption>
               <span class="fig-label">Video 4.</span>
               Outdoor scene navigation.
@@ -695,17 +703,19 @@
           </figure>
 
           <figure class="deployment-video">
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              width="1280"
-              height="1380"
-              aria-label="Indoor laboratory test-area navigation"
+            <button
+              class="video-button"
+              type="button"
+              data-lightbox-video="img/playground.mp4"
+              data-caption="Video 5. Indoor laboratory test-area navigation."
+              aria-label="Play Video 5, indoor laboratory test-area navigation, enlarged"
+              title="Play enlarged"
             >
-              <source src="img/playground.mp4" type="video/mp4">
-              Your browser does not support embedded MP4 video.
-            </video>
+              <video preload="metadata" muted playsinline tabindex="-1" width="1280" height="1380">
+                <source src="img/playground.mp4" type="video/mp4">
+              </video>
+              <span class="play-mark" aria-hidden="true">&#9654;</span>
+            </button>
             <figcaption>
               <span class="fig-label">Video 5.</span>
               Indoor laboratory test-area navigation.
@@ -713,17 +723,19 @@
           </figure>
 
           <figure class="deployment-video failure-case">
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              width="1280"
-              height="1380"
-              aria-label="Outdoor navigation failure case"
+            <button
+              class="video-button"
+              type="button"
+              data-lightbox-video="img/outdoors-failed.mp4"
+              data-caption="Video 6. Representative failure case: outdoor navigation where the policy selects an occluded waypoint leading to a local minimum. The robot requires human intervention after repeated oscillation between two waypoints."
+              aria-label="Play Video 6, outdoor navigation failure case, enlarged"
+              title="Play enlarged"
             >
-              <source src="img/outdoors-failed.mp4" type="video/mp4">
-              Your browser does not support embedded MP4 video.
-            </video>
+              <video preload="metadata" muted playsinline tabindex="-1" width="1280" height="1380">
+                <source src="img/outdoors-failed.mp4" type="video/mp4">
+              </video>
+              <span class="play-mark" aria-hidden="true">&#9654;</span>
+            </button>
             <figcaption>
               <span class="fig-label">Video 6.</span>
               Representative failure case: outdoor navigation where the policy selects
@@ -809,6 +821,7 @@
     <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close expanded figure" title="Close">&times;</button>
     <div class="lightbox-content">
       <img data-lightbox-image src="" alt="">
+      <video data-lightbox-player controls playsinline preload="metadata" hidden></video>
       <p data-lightbox-caption></p>
     </div>
   </div>

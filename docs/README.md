@@ -34,7 +34,7 @@ docs/
 
 - **Academic paper layout** — numbered sections, `Figure N.` / `Table N.` / `Video N.` labels, centered serif abstract, resource-link row, BibTeX block
 - **Neutral palette** — white background, light gray alternating bands, earth-tone accents; the failure-case video uses the rust accent (`--rust`)
-- **Videos** — `.video-grid` (3 columns → 2 → 1 responsive) of `.deployment-video` figures; `controls playsinline preload="metadata"`, aspect ratio 1280/1380; keep success examples first and the failure case (`.failure-case`) last
+- **Videos** — `.video-grid` (3 columns → 2 → 1 responsive, max-width 900px) of small `.video-button` preview tiles (muted, no controls, aspect ratio 1280/1380, centered play badge); clicking opens the shared lightbox overlay with a `controls` player (in-page enlarge, not native fullscreen); keep success examples first and the failure case (`.failure-case`) last
 - **Accessibility** — semantic HTML, ARIA labels, keyboard navigation, WCAG AA contrast
 - **No marketing patterns** — no gradients, CTAs, or SaaS styling
 
@@ -42,7 +42,7 @@ docs/
 
 - **Numbers:** cross-check every metric against `paper/TAMP-Nav/en.tex` before editing
 - **New figures/tables/videos:** follow the existing markup patterns and renumber sequentially
-- **Adding videos:** append `<figure class="deployment-video">` blocks inside `.video-grid`; keep the failure case last
+- **Adding videos:** append `<figure class="deployment-video">` blocks with a `.video-button` tile (`data-lightbox-video` + `data-caption`) inside `.video-grid`; keep the failure case last
 - **Anonymity:** no author names, affiliations, links, or identifying metadata until acceptance
 
 ## Validation

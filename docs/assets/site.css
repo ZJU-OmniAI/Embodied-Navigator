@@ -347,6 +347,7 @@ section[id] {
 }
 
 .figure-button:focus-visible,
+.video-button:focus-visible,
 .resource-link:focus-visible,
 .nav-links a:focus-visible,
 .site-mark:focus-visible,
@@ -817,17 +818,6 @@ tr.ours td {
   margin: 48px auto 0;
 }
 
-.deployment-video video {
-  display: block;
-  width: min(100%, 520px);
-  height: auto;
-  margin: 0 auto;
-  aspect-ratio: 1280 / 1380;
-  border: 1px solid var(--line-strong);
-  border-radius: 4px;
-  background: #101412;
-}
-
 .deployment-video figcaption {
   max-width: 620px;
   text-align: center;
@@ -847,8 +837,9 @@ tr.ours td {
 
 .video-grid {
   display: grid;
-  margin-top: 28px;
-  gap: 26px 18px;
+  max-width: 900px;
+  margin: 28px auto 0;
+  gap: 24px 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -857,8 +848,50 @@ tr.ours td {
   margin: 0;
 }
 
-.video-grid .deployment-video video {
+.video-button {
+  position: relative;
+  display: block;
   width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #101412;
+  cursor: zoom-in;
+}
+
+.video-button video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 1380;
+  pointer-events: none;
+}
+
+.play-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: rgba(16, 20, 18, 0.65);
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0.85;
+  padding-left: 4px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  transition: opacity 160ms ease, background-color 160ms ease;
+}
+
+.video-button:hover .play-mark,
+.video-button:focus-visible .play-mark {
+  background: rgba(16, 20, 18, 0.85);
+  opacity: 1;
 }
 
 .video-grid .deployment-video figcaption {
@@ -866,7 +899,7 @@ tr.ours td {
   font-size: 13px;
 }
 
-.failure-case video {
+.failure-case .video-button {
   border-color: var(--rust);
 }
 
@@ -1087,6 +1120,18 @@ tr.ours td {
   background: var(--white);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
   object-fit: contain;
+}
+
+.lightbox-content video {
+  max-width: 100%;
+  max-height: calc(100% - 52px);
+  border-radius: 4px;
+  background: #000000;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-content video[hidden] {
+  display: none;
 }
 
 .lightbox-content p {
@@ -1342,12 +1387,9 @@ tr.ours td {
   }
 
   .video-grid {
-    gap: 30px;
+    max-width: 420px;
+    gap: 26px;
     grid-template-columns: 1fr;
-  }
-
-  .video-grid .deployment-video video {
-    width: min(100%, 420px);
   }
 
   .artifact-grid {
