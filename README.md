@@ -174,7 +174,7 @@ The same videos play inline on the [project homepage](docs/index.html).
 | 3 | [meeting-room.mp4](docs/img/meeting-room.mp4) | Meeting room | Meeting-room navigation |
 | 4 | [outdoors.mp4](docs/img/outdoors.mp4) | Outdoors | Outdoor scene navigation |
 | 5 | [playground.mp4](docs/img/playground.mp4) | Laboratory test area | Indoor laboratory test-area navigation |
-| 6 | [outdoors-failed.mp4](docs/img/outdoors-failed.mp4) | Outdoors (**failure case**) | The policy selects an occluded waypoint, oscillates between two waypoints, and requires human intervention |
+| 6 | [outdoors-failed.mp4](docs/img/outdoors-failed.mp4) | Outdoors (**failure case**) | At the final step, the robot moves to a position where the target is outside all camera views; the policy hallucinates that it has reached the goal and stops prematurely |
 
 ## Repository Structure
 

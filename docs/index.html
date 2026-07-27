@@ -725,7 +725,7 @@
               class="video-button"
               type="button"
               data-lightbox-video="img/outdoors-failed.mp4"
-              data-caption="Video 6. Representative failure case: outdoor navigation where the policy selects an occluded waypoint leading to a local minimum. The robot requires human intervention after repeated oscillation between two waypoints."
+              data-caption="Video 6. Outdoor navigation failure: at the final step, the robot happens to move to a position where the target object is no longer visible in any camera view. The policy hallucinates that it has reached the goal and prematurely issues a stop action."
               aria-label="Play Video 6, outdoor navigation failure case, enlarged"
               title="Play enlarged"
             >
@@ -736,9 +736,10 @@
             </button>
             <figcaption>
               <span class="fig-label">Video 6.</span>
-              Representative failure case: outdoor navigation where the policy selects
-              an occluded waypoint leading to a local minimum. The robot requires human
-              intervention after repeated oscillation between two waypoints.
+              Outdoor navigation failure: at the final step, the robot happens to move to
+              a position where the target object is no longer visible in any camera view.
+              The policy hallucinates that it has reached the goal and prematurely issues
+              a stop action.
             </figcaption>
           </figure>
         </div>
