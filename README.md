@@ -93,14 +93,6 @@ The full framework improves R2R-CE success from **55.7% to 66.2%** over its SFT-
 
 ### Reasoning on demand
 
-<p align="center">
-  <img src="docs/img/reasoning_heatmap.png" alt="Spatial density of reasoning triggers before and after reinforcement learning" width="100%">
-</p>
-
-<p align="center"><em>
-Spatial density of reasoning triggers: SFT initialization (left) and RL-aligned TAMP-Nav (right).
-</em></p>
-
 | Trigger strategy | CoT ratio | R2R-CE SR |
 | --- | ---: | ---: |
 | Dense CoT | 100.0% | 66.8% |
@@ -133,6 +125,14 @@ Explicit anchors preserve high-value semantic evidence, while Space-Time Indicat
 | Average inference time per task on one A800 | **16.58 s** | 37.47 s for StreamVLN; 41.46 s for DualVLN |
 | SR with 0.2 multiplicative depth noise | **63.4%** | 66.2% without noise |
 | Zero-shot real-world SR over 100 trials | **60.0%** | 49.0% for StreamVLN; 53.0% for DualVLN |
+
+<p align="center">
+  <img src="docs/img/grpo_learning_curves.png" alt="Learning curves comparing Two-Level GRPO, trajectory-only GRPO, and GRPO without guided sampling" width="88%">
+</p>
+
+<p align="center"><em>
+Success-reward learning curves over 800 training steps for three GRPO configurations.
+</em></p>
 
 The Two-Level GRPO analysis reports a final success reward of **0.59** with trajectory rewards alone, **0.64** after adding local step advantages, and **0.68** with the full annealed guided-sampling strategy.
 

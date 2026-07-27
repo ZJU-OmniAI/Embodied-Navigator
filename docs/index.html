@@ -412,25 +412,23 @@
           <button
             class="figure-button"
             type="button"
-            data-lightbox="img/reasoning_heatmap.png"
-            data-caption="Figure 3. Spatial density of reasoning triggers for the SFT initialization (left) and RL-aligned TAMP-Nav (right)."
-            aria-label="Open Figure 3, the reasoning trigger heatmap, at full size"
+            data-lightbox="img/grpo_learning_curves.png"
+            data-caption="Figure 3. Two-Level GRPO learning curves showing success reward across training steps."
+            aria-label="Open Figure 3, the Two-Level GRPO learning curves, at full size"
             title="Open full-size figure"
           >
             <img
-              src="img/reasoning_heatmap.png"
-              alt="Spatial heatmaps comparing reasoning trigger density before and after reinforcement learning"
-              width="1733"
-              height="627"
+              src="img/grpo_learning_curves.png"
+              alt="Learning curves comparing Two-Level GRPO, trajectory-only GRPO, and GRPO without guided sampling"
+              width="2200"
+              height="1100"
               loading="lazy"
             >
             <span class="zoom-mark" aria-hidden="true">+</span>
           </button>
           <figcaption>
             <span class="fig-label">Figure 3.</span>
-            Spatial density of reasoning triggers, SFT initialization (left) versus
-            RL-aligned TAMP-Nav (right). Alignment concentrates reasoning around
-            topological decisions and suppresses thinking along routine corridors.
+            Two-Level GRPO learning curves. The full framework (orange) reaches 0.68 success reward by combining trajectory-level outcomes with local step advantages and guided sampling, compared to 0.64 without guidance and 0.59 with trajectory rewards alone.
           </figcaption>
         </figure>
       </div>
