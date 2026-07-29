@@ -922,6 +922,11 @@ tr.ours td {
   text-align: center;
 }
 
+.detailed-table .variant-header,
+.detailed-table tbody th[scope="row"] {
+  text-align: left;
+}
+
 .detailed-table .block-name {
   border-right: 1px solid var(--line);
   color: var(--rust);
