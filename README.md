@@ -116,6 +116,40 @@ The long-horizon subset contains 5,927 trajectories whose expert paths exceed 12
 
 Explicit anchors preserve high-value semantic evidence, while Space-Time Indicators retain the geometry of compressed path segments. Removing the indicators reduces long-horizon SR by 4.2 percentage points.
 
+### Controlled component attribution
+
+All variants below use the same Qwen2.5-VL-7B policy, sensing inputs, validation-unseen splits, fixed non-learned SLAM controller, and evaluation protocol. Each block changes only its named component. R2R-CE values are ordered as **NE / OS / SR / SPL**; RxR-CE values are **NE / SR / SPL / nDTW**.
+
+| Block | Variant | R2R-CE | RxR-CE |
+| --- | --- | ---: | ---: |
+| Action (SFT only) | NavFoM-style metric waypoint | 7.18 / 42.0 / 30.9 / 24.7 | 8.47 / 27.2 / 20.6 / 43.1 |
+|  | **Pixel-to-3D** | **4.88 / 62.0 / 55.7 / 50.3** | **6.10 / 52.4 / 46.2 / 62.1** |
+| GRPO | Global trajectory advantage only | 4.52 / 67.0 / 59.3 / 52.1 | 5.30 / 58.4 / 49.7 / 65.5 |
+|  | Two-Level without annealed guidance | 4.12 / 71.5 / 63.4 / 56.0 | 4.72 / 62.6 / 53.8 / 69.4 |
+|  | **Full Two-Level GRPO** | **3.85 / 74.5 / 66.2 / 58.8** | **4.32 / 65.7 / 56.9 / 72.4** |
+| Memory | Uniform sampling | 4.43 / 68.2 / 60.8 / 53.6 | 5.03 / 59.4 / 50.8 / 66.8 |
+|  | Full history | 4.29 / 69.4 / 61.9 / 54.7 | 4.87 / 61.1 / 51.8 / 68.0 |
+|  | AT-Mem without STI | 4.08 / 71.4 / 63.6 / 56.1 | 4.59 / 62.4 / 52.7 / 69.8 |
+|  | **Full AT-Mem** | **3.85 / 74.5 / 66.2 / 58.8** | **4.32 / 65.7 / 56.9 / 72.4** |
+| Reasoning | Dense CoT | 3.79 / 75.1 / 66.8 / 59.3 | 4.25 / 66.1 / 57.4 / 72.8 |
+|  | Fixed interval (1/3) | 4.46 / 67.6 / 60.1 / 52.8 | 5.10 / 58.9 / 50.0 / 65.9 |
+|  | **Adaptive (ours)** | **3.85 / 74.5 / 66.2 / 58.8** | **4.32 / 65.7 / 56.9 / 72.4** |
+
+The controlled action study uses the same 90k trajectories, approximately 700k interactions, and one SFT epoch without GRPO. Pixel-to-3D improves SR by **24.8/25.2 points** on R2R-CE/RxR-CE. Within GRPO, local advantages add **4.1/4.2 points**, and annealed guidance adds another **2.8/3.1 points**.
+
+### MultiNav-CoT supervision study
+
+All variants use the same 90k trajectories, action labels, Qwen2.5-VL-7B student, and one-epoch SFT budget without GRPO; only the CoT supervision source changes.
+
+| SFT supervision | R2R-CE: NE / OS / SR / SPL | RxR-CE: NE / SR / SPL / nDTW |
+| --- | ---: | ---: |
+| Action only (no CoT) | 5.31 / 57.0 / 50.6 / 45.0 | 6.71 / 46.1 / 39.8 / 56.2 |
+| Qwen2.5-VL-7B CoT | 5.46 / 55.7 / 49.4 / 43.1 | 6.83 / 44.8 / 38.2 / 54.9 |
+| GLM-4.5V-108B CoT | 4.99 / 60.8 / 54.4 / 48.9 | 6.24 / 51.2 / 44.9 / 60.8 |
+| **Gemini 2.5 Flash CoT** | **4.88 / 62.0 / 55.7 / 50.3** | **6.10 / 52.4 / 46.2 / 62.1** |
+
+Weak CoT supervision falls below action-only SFT, while the open-weight GLM-4.5V-108B teacher approaches Gemini 2.5 Flash on both benchmarks.
+
 ### Efficiency, robustness, and transfer
 
 | Evaluation | TAMP-Nav | Comparison or reference |
@@ -126,15 +160,22 @@ Explicit anchors preserve high-value semantic evidence, while Space-Time Indicat
 | SR with 0.2 multiplicative depth noise | **63.4%** | 66.2% without noise |
 | Zero-shot real-world SR over 100 trials | **60.0%** | 49.0% for StreamVLN; 53.0% for DualVLN |
 
-<p align="center">
-  <img src="docs/img/grpo_learning_curves.png" alt="Learning curves comparing Two-Level GRPO, trajectory-only GRPO, and GRPO without guided sampling" width="88%">
-</p>
+### Analysis: adaptive cognition, memory, and alignment
 
-<p align="center"><em>
-Success-reward learning curves over 800 training steps for three GRPO configurations.
-</em></p>
+<table>
+  <tr>
+    <th width="33%">Think · reasoning allocation</th>
+    <th width="33%">Memorize · long-horizon retention</th>
+    <th width="34%">Align · RL learning dynamics</th>
+  </tr>
+  <tr>
+    <td><img src="docs/img/reasoning_trigger_heatmap.png" alt="Spatial heatmaps of SFT and RL-aligned reasoning triggers" width="100%"></td>
+    <td><img src="docs/img/long_horizon_performance.png" alt="Success rate by forward-action count for TAMP-Nav and memory baselines" width="100%"></td>
+    <td><img src="docs/img/grpo_learning_curves.png" alt="Success-reward learning curves for three GRPO configurations" width="100%"></td>
+  </tr>
+</table>
 
-The Two-Level GRPO analysis reports a final success reward of **0.59** with trajectory rewards alone, **0.64** after adding local step advantages, and **0.68** with the full annealed guided-sampling strategy.
+The three views isolate distinct claims. RL alignment reduces reasoning assigned to straight corridors from **38% to 11%** and concentrates triggers near consequential nodes. TAMP-Nav retains the strongest success rate across the plotted trajectory-length bins, while removing Space-Time Indicators reduces aggregate long-horizon SR by **4.2 points**. Two-Level GRPO reaches about **0.68** success reward during training; local step advantages and annealed guided sampling provide a clear advantage over trajectory-only feedback.
 
 ## Qualitative Examples
 
