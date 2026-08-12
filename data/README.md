@@ -1,5 +1,5 @@
 ## Dataset Note
 
-Due to supplementary material size limits, this submission includes only a subset of the dataset.
+This directory includes a subset of the MultiNav-CoT dataset.
 
-The full dataset will be publicly released after paper acceptance.
+The full dataset will be released separately.

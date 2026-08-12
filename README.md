@@ -4,7 +4,10 @@
 
 ### Point, Think, Memorize, and Align for Efficient Embodied Navigation
 
-Anonymous research artifact for double-blind review
+Hongyan Feng, Sunlai Chen, Xuanyu Liu, Miao Pan, Yangfan Xie,<br>
+Yuxiang Cui, Zhongxiang Zhou, Wenqi Zhang, Rong Xiong, Xuhong Zhang
+
+Zhejiang University
 
 [Architecture](#architecture) | [Results](#main-results) | [Analysis](#what-the-model-learns) | [Examples](#qualitative-examples)
 
@@ -65,7 +68,7 @@ At every decision point, the policy explores several candidate visual actions an
 
 ## Main Results
 
-All values below are reported in the anonymous manuscript on validation-unseen splits. Higher is better for OS, SR, SPL, and nDTW; lower is better for NE.
+All values below are reported in the manuscript on validation-unseen splits. Higher is better for OS, SR, SPL, and nDTW; lower is better for NE.
 
 ### R2R-CE Val-Unseen
 
@@ -230,9 +233,8 @@ The same videos play inline on the [project homepage](docs/index.html).
 | `src/server/` | Real-robot FastAPI service and ROS2 client |
 | `config/` | Experiment configurations (SFT, GRPO, eval) |
 | `scripts/` | Training and evaluation shell scripts |
-| `data/` | Anonymized review subset (full dataset post-acceptance) |
+| `data/` | MultiNav-CoT data subset (full dataset released separately) |
 | `docs/` | Project homepage (figures and deployment videos) |
-| `paper/` | LaTeX manuscript source (anonymized) |
 
 ## Getting Started
 
@@ -258,8 +260,8 @@ cd TAMP-Nav
 # Install dependencies
 pip install -r requirements.txt
 
-# Download anonymized data subset
-# (90k MultiNav-CoT subset provided for review)
+# Download the MultiNav-CoT data subset
+# (a subset of the 90k-trajectory dataset is included in data/)
 ```
 
 ### Quick Start
@@ -326,38 +328,33 @@ Page conventions for maintainers are documented in `docs/README.md`.
 
 ## Citation
 
-Citation metadata is anonymized during review and will be replaced on acceptance.
-
 ```bibtex
-@inproceedings{anonymous2026tampnav,
+@inproceedings{feng2026tampnav,
   title     = {TAMP-Nav: Point, Think, Memorize, and Align
                for Efficient Embodied Navigation},
-  author    = {Anonymous Authors},
-  booktitle = {Under double-blind review},
-  year      = {2026},
-  note      = {Author and venue metadata withheld during review}
+  author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
+               Xie, Yangfan and Cui, Yuxiang and Zhou, Zhongxiang and
+               Zhang, Wenqi and Xiong, Rong and Zhang, Xuhong},
+  year      = {2026}
 }
 ```
 
-## Artifact Scope
+## Repository Scope
 
-This repository is an anonymous review artifact. Author identities, affiliations, acknowledgements, personal project links, and citation metadata are intentionally withheld.
-
-**Included in this artifact:**
+**Included in this repository:**
 - Navigation policy implementation (`src/agent/`)
 - Navigation-adapted VLM (`src/model/`)
 - SFT and Two-Level GRPO training code (`src/train/`)
 - Continuous-navigation environment and evaluation (`src/env/`, `src/eval/`)
-- MultiNav-CoT processing pipeline with anonymized review subset (`src/dataset/`, `data/`)
+- MultiNav-CoT processing pipeline with a data subset (`src/dataset/`, `data/`)
 - Real-robot serving interfaces (`src/server/`)
 - Experiment configurations and scripts (`config/`, `scripts/`)
 
-**Distributed separately (post-acceptance):**
+**Distributed separately:**
 - Full licensed Habitat-Matterport3D simulation assets
 - Complete 90k-trajectory MultiNav-CoT dataset
 - Pre-trained model checkpoints
 - Complete recordings of all 100 real-world trials (six representative videos are included in `docs/img/`)
-- Full manuscript and LaTeX source
 
 **Key dependencies:**
 - The method is trained on MultiNav-CoT, which uses Gemini 2.5 Flash–generated Chain-of-Thought annotations
@@ -366,4 +363,4 @@ This repository is an anonymous review artifact. Author identities, affiliations
 
 ## License
 
-License information will be provided upon acceptance. This artifact is provided for review purposes only.
+License information will be added with the public release of the checkpoints and full dataset.

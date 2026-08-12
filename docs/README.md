@@ -1,6 +1,6 @@
 # TAMP-Nav Project Homepage
 
-Anonymous research artifact homepage for double-blind review.
+Project homepage for TAMP-Nav.
 
 ## Quick Links
 
@@ -43,7 +43,6 @@ docs/
 - **Numbers:** cross-check every metric against `paper/TAMP-Nav/en.tex` before editing
 - **New figures/tables/videos:** follow the existing markup patterns and renumber sequentially
 - **Adding videos:** append `<figure class="deployment-video">` blocks with a `.video-button` tile (`data-lightbox-video` + `data-caption`) inside `.video-grid`; keep the failure case last
-- **Anonymity:** no author names, affiliations, links, or identifying metadata until acceptance
 
 ## Validation
 
@@ -59,7 +58,3 @@ du -sh img/*
 # Test responsive breakpoints
 # Open in browser, test at 1440px, 980px, 720px widths
 ```
-
----
-
-**Maintainer:** Anonymous (double-blind review)
