@@ -325,6 +325,21 @@ section[id] {
 
 /* ---------- Figures ---------- */
 
+.overview-video {
+  max-width: 720px;
+  margin-top: 40px;
+}
+
+.overview-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 1380;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: #101412;
+}
+
 .teaser {
   max-width: var(--page-wide);
   margin-top: 44px;
@@ -1419,6 +1434,10 @@ tr.ours td {
   }
 
   .teaser {
+    margin-top: 30px;
+  }
+
+  .overview-video {
     margin-top: 30px;
   }
 
