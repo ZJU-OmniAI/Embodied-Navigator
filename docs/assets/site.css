@@ -326,8 +326,7 @@ section[id] {
 /* ---------- Figures ---------- */
 
 .overview-video {
-  width: calc(66.6667% - 32px);
-  max-width: 373px;
+  max-width: 218px;
   margin-top: 40px;
 }
 
@@ -1439,7 +1438,6 @@ tr.ours td {
   }
 
   .overview-video {
-    width: calc(66.6667% - 20px);
     margin-top: 30px;
   }
 
