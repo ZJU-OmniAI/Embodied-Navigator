@@ -9,7 +9,21 @@ Yuxiang Cui, Zhongxiang Zhou, Wenqi Zhang, Rong Xiong, Xuhong Zhang
 
 Zhejiang University
 
-[Model](https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750) | [Architecture](#architecture) | [Results](#main-results) | [Analysis](#what-the-model-learns) | [Examples](#qualitative-examples)
+<a href="https://zju-omniai.github.io/TAMP-Nav/">
+  <img alt="Project page" src="https://img.shields.io/badge/Project_Page-Website-2B765C?logo=googlechrome&logoColor=white">
+</a>
+<a href="https://github.com/ZJU-OmniAI/TAMP-Nav">
+  <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white">
+</a>
+<a href="https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750">
+  <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=000">
+</a>
+<a href="https://github.com/ZJU-OmniAI/TAMP-Nav/tree/main/data">
+  <img alt="MultiNav-CoT dataset" src="https://img.shields.io/badge/Dataset-MultiNav--CoT-2B5C8A?logo=databricks&logoColor=white">
+</a>
+<a href="#citation">
+  <img alt="BibTeX citation" src="https://img.shields.io/badge/Citation-BibTeX-A87316?logo=googlescholar&logoColor=white">
+</a>
 
 </div>
 

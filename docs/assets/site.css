@@ -318,9 +318,21 @@ section[id] {
   color: var(--muted);
 }
 
-.resource-icon {
-  font-size: 11px;
-  line-height: 1;
+.resource-symbol-icon,
+.resource-brand-icon {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.resource-symbol-icon {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+}
+
+.resource-brand-icon {
+  width: 18px;
+  height: 17px;
 }
 
 /* ---------- Figures ---------- */
