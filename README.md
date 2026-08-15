@@ -9,7 +9,7 @@ Yuxiang Cui, Zhongxiang Zhou, Wenqi Zhang, Rong Xiong, Xuhong Zhang
 
 Zhejiang University
 
-[Architecture](#architecture) | [Results](#main-results) | [Analysis](#what-the-model-learns) | [Examples](#qualitative-examples)
+[Model](https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750) | [Architecture](#architecture) | [Results](#main-results) | [Analysis](#what-the-model-learns) | [Examples](#qualitative-examples)
 
 </div>
 
@@ -20,6 +20,15 @@ TAMP-Nav is a unified vision-language navigation framework that aligns high-leve
 The framework couples this vision-centric action space with selective reasoning, long-horizon memory, and hierarchical reinforcement learning. The resulting RGB-based navigator reasons at difficult decision points, preserves the topology of long trajectories, and learns from both immediate physical feedback and complete-task outcomes.
 
 > **Core contribution:** TAMP-Nav unifies spatial alignment, adaptive reasoning, compact trajectory memory, and dense policy optimization in one embodied navigation framework.
+
+## Model Checkpoint
+
+The released [TAMP-Nav-7B-GRPO-1750 checkpoint](https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750) is available on Hugging Face. Download it with:
+
+```bash
+hf download UnderTides/TAMP-Nav-7B-GRPO-1750 \
+  --local-dir TAMP-Nav-7B-GRPO-1750
+```
 
 ## Architecture
 
@@ -353,7 +362,7 @@ Page conventions for maintainers are documented in `docs/README.md`.
 **Distributed separately:**
 - Full licensed Habitat-Matterport3D simulation assets
 - Complete 90k-trajectory MultiNav-CoT dataset
-- Pre-trained model checkpoints
+- [TAMP-Nav-7B-GRPO-1750 model checkpoint](https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750)
 - Complete recordings of all 100 real-world trials (six representative videos are included in `docs/img/`)
 
 **Key dependencies:**
@@ -363,4 +372,4 @@ Page conventions for maintainers are documented in `docs/README.md`.
 
 ## License
 
-License information will be added with the public release of the checkpoints and full dataset.
+License information for the repository code, released checkpoint, and full dataset will be added.
