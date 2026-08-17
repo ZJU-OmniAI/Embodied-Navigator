@@ -1,6 +1,6 @@
 <div align="center">
 
-# TAMP-Nav
+# Embodied-Navigator
 
 ### Point, Think, Memorize, and Align for Efficient Embodied Navigation
 
@@ -9,16 +9,16 @@ Yuxiang Cui, Zhongxiang Zhou, Wenqi Zhang, Rong Xiong, Xuhong Zhang
 
 Zhejiang University
 
-<a href="https://zju-omniai.github.io/TAMP-Nav/">
+<a href="https://zju-omniai.github.io/Embodied-Navigator/">
   <img alt="Project page" src="https://img.shields.io/badge/Project_Page-Website-2B765C?logo=googlechrome&logoColor=white">
 </a>
-<a href="https://github.com/ZJU-OmniAI/TAMP-Nav">
+<a href="https://github.com/ZJU-OmniAI/Embodied-Navigator">
   <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white">
 </a>
-<a href="https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750">
+<a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600">
   <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=000">
 </a>
-<a href="https://github.com/ZJU-OmniAI/TAMP-Nav/tree/main/data">
+<a href="https://github.com/ZJU-OmniAI/Embodied-Navigator/tree/main/data">
   <img alt="MultiNav-CoT dataset" src="https://img.shields.io/badge/Dataset-MultiNav--CoT-2B5C8A?logo=databricks&logoColor=white">
 </a>
 <a href="#citation">
@@ -29,29 +29,29 @@ Zhejiang University
 
 ## Overview
 
-TAMP-Nav is a unified vision-language navigation framework that aligns high-level visual reasoning with low-level physical execution. Instead of asking a vision-language model (VLM) to regress 3D coordinates or emit long sequences of atomic actions, TAMP-Nav lets the model act as a visual pointer: it selects a camera view and a 2D pixel waypoint, which is projected into 3D and executed by a low-level SLAM controller.
+Embodied-Navigator is a unified vision-language navigation framework that aligns high-level visual reasoning with low-level physical execution. Instead of asking a vision-language model (VLM) to regress 3D coordinates or emit long sequences of atomic actions, Embodied-Navigator lets the model act as a visual pointer: it selects a camera view and a 2D pixel waypoint, which is projected into 3D and executed by a low-level SLAM controller.
 
 The framework couples this vision-centric action space with selective reasoning, long-horizon memory, and hierarchical reinforcement learning. The resulting RGB-based navigator reasons at difficult decision points, preserves the topology of long trajectories, and learns from both immediate physical feedback and complete-task outcomes.
 
-> **Core contribution:** TAMP-Nav unifies spatial alignment, adaptive reasoning, compact trajectory memory, and dense policy optimization in one embodied navigation framework.
+> **Core contribution:** Embodied-Navigator unifies spatial alignment, adaptive reasoning, compact trajectory memory, and dense policy optimization in one embodied navigation framework.
 
 ## Model Checkpoint
 
-The released [TAMP-Nav-7B-GRPO-1750 checkpoint](https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750) is available on Hugging Face. Download it with:
+The released [Embodied-Navigator-7B-GRPO-600 checkpoint](https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600) is available on Hugging Face. Download it with:
 
 ```bash
-hf download UnderTides/TAMP-Nav-7B-GRPO-1750 \
-  --local-dir TAMP-Nav-7B-GRPO-1750
+hf download UnderTides/Embodied-Navigator-7B-GRPO-600 \
+  --local-dir Embodied-Navigator-7B-GRPO-600
 ```
 
 ## Architecture
 
 <p align="center">
-  <img src="docs/img/architecture.png" alt="TAMP-Nav architecture" width="100%">
+  <img src="docs/img/architecture.png" alt="Embodied-Navigator architecture" width="100%">
 </p>
 
 <p align="center"><em>
-TAMP-Nav combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution.
+Embodied-Navigator combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution.
 </em></p>
 
 At each navigation step, the policy combines four egocentric RGB views with a compressed history. It decides whether the scene warrants explicit reasoning, predicts a view and pixel waypoint, and delegates metric execution to the controller. Depth is used only after the VLM prediction for geometric projection; it is not an input to the VLM.
@@ -65,11 +65,11 @@ At each navigation step, the policy combines four egocentric RGB views with a co
 
 ### Point: visual actions, metric execution
 
-TAMP-Nav is the first to formulate pixel pointing as a natural bridge for smoothly transferring the VLM's visual-grounding ability acquired during pre-training to VLN. The VLM observes four views covering 360 degrees, chooses the most relevant view, and predicts a pixel coordinate. Projecting that pixel through the aligned depth map produces a local 3D waypoint for the SLAM controller. This separation lets the learned policy focus on visual-semantic grounding rather than learning metric geometry implicitly.
+Embodied-Navigator is the first to formulate pixel pointing as a natural bridge for smoothly transferring the VLM's visual-grounding ability acquired during pre-training to VLN. The VLM observes four views covering 360 degrees, chooses the most relevant view, and predicts a pixel coordinate. Projecting that pixel through the aligned depth map produces a local 3D waypoint for the SLAM controller. This separation lets the learned policy focus on visual-semantic grounding rather than learning metric geometry implicitly.
 
 ### Think and Memorize: adaptive cognition over long horizons
 
-TAMP-Nav treats reasoning events as memory anchors. A critical node retains its visual evidence, spatial-temporal state, and reasoning summary. Between anchors, redundant images are discarded and the traversed path is represented by lightweight Space-Time Indicators encoding position, orientation, and time. The resulting alternating anchor-trajectory sequence preserves both semantic landmarks and geometric connectivity.
+Embodied-Navigator treats reasoning events as memory anchors. A critical node retains its visual evidence, spatial-temporal state, and reasoning summary. Between anchors, redundant images are discarded and the traversed path is represented by lightweight Space-Time Indicators encoding position, orientation, and time. The resulting alternating anchor-trajectory sequence preserves both semantic landmarks and geometric connectivity.
 
 ### Align: Two-Level GRPO
 
@@ -100,8 +100,8 @@ All values below are reported in the manuscript on validation-unseen splits. Hig
 | StreamVLN | 4.98 | 64.2 | 56.9 | 51.9 |
 | NavFoM | 4.61 | 72.1 | 61.7 | 55.3 |
 | DualVLN | 4.05 | 70.7 | 64.3 | 58.5 |
-| TAMP-Nav (SFT only) | 4.88 | 62.0 | 55.7 | 50.3 |
-| **TAMP-Nav** | **3.85** | **74.5** | **66.2** | **58.8** |
+| Embodied-Navigator (SFT only) | 4.88 | 62.0 | 55.7 | 50.3 |
+| **Embodied-Navigator** | **3.85** | **74.5** | **66.2** | **58.8** |
 
 ### RxR-CE Val-Unseen
 
@@ -110,8 +110,8 @@ All values below are reported in the manuscript on validation-unseen splits. Hig
 | StreamVLN | 6.22 | 52.9 | 46.0 | 61.9 |
 | NavFoM | 4.74 | 64.4 | 56.2 | 65.8 |
 | DualVLN | 4.58 | 61.4 | 51.8 | 70.0 |
-| TAMP-Nav (SFT only) | 6.10 | 52.4 | 46.2 | 62.1 |
-| **TAMP-Nav** | **4.32** | **65.7** | **56.9** | **72.4** |
+| Embodied-Navigator (SFT only) | 6.10 | 52.4 | 46.2 | 62.1 |
+| **Embodied-Navigator** | **4.32** | **65.7** | **56.9** | **72.4** |
 
 The full framework improves R2R-CE success from **55.7% to 66.2%** over its SFT-only initialization, a gain of 10.5 percentage points from reinforcement-learning alignment.
 
@@ -123,7 +123,7 @@ The full framework improves R2R-CE success from **55.7% to 66.2%** over its SFT-
 | --- | ---: | ---: |
 | Dense CoT | 100.0% | 66.8% |
 | Fixed interval (1/3) | 36.2% | 60.1% |
-| **Adaptive trigger (TAMP-Nav)** | **26.3%** | **66.2%** |
+| **Adaptive trigger (Embodied-Navigator)** | **26.3%** | **66.2%** |
 
 Adaptive triggering nearly matches dense reasoning while invoking CoT on roughly one quarter of the steps. Spatial analysis further shows that reasoning assigned to straight corridors falls from **38% after SFT to 11% after RL alignment**, while triggers concentrate around intersections, doorways, and target-relevant regions.
 
@@ -135,10 +135,10 @@ The long-horizon subset contains 5,927 trajectories whose expert paths exceed 12
 | --- | ---: |
 | StreamVLN | 30.9 |
 | DualVLN | 41.9 |
-| TAMP-Nav with uniform sampling | 40.5 |
-| TAMP-Nav with full history | 42.4 |
-| TAMP-Nav without Space-Time Indicators | 45.6 |
-| **TAMP-Nav with Anchor-Trajectory Memory** | **49.8** |
+| Embodied-Navigator with uniform sampling | 40.5 |
+| Embodied-Navigator with full history | 42.4 |
+| Embodied-Navigator without Space-Time Indicators | 45.6 |
+| **Embodied-Navigator with Anchor-Trajectory Memory** | **49.8** |
 
 Explicit anchors preserve high-value semantic evidence, while Space-Time Indicators retain the geometry of compressed path segments. Removing the indicators reduces long-horizon SR by 4.2 percentage points.
 
@@ -178,7 +178,7 @@ Weak CoT supervision falls below action-only SFT, while the open-weight GLM-4.5V
 
 ### Efficiency, robustness, and transfer
 
-| Evaluation | TAMP-Nav | Comparison or reference |
+| Evaluation | Embodied-Navigator | Comparison or reference |
 | --- | ---: | --- |
 | Training scale | **90k trajectories / 700k interactions** | SFT cold start followed by Two-Level GRPO |
 | Average policy interactions per trajectory | **9** | Approximately 30 for StreamVLN and DualVLN |
@@ -196,19 +196,19 @@ Weak CoT supervision falls below action-only SFT, while the open-weight GLM-4.5V
   </tr>
   <tr>
     <td><img src="docs/img/reasoning_trigger_heatmap.png" alt="Spatial heatmaps of SFT and RL-aligned reasoning triggers" width="100%"></td>
-    <td><img src="docs/img/long_horizon_performance.png" alt="Success rate by forward-action count for TAMP-Nav and memory baselines" width="100%"></td>
+    <td><img src="docs/img/long_horizon_performance.png" alt="Success rate by forward-action count for Embodied-Navigator and memory baselines" width="100%"></td>
     <td><img src="docs/img/grpo_learning_curves.png" alt="Success-reward learning curves for three GRPO configurations" width="100%"></td>
   </tr>
 </table>
 
-The three views isolate distinct claims. RL alignment reduces reasoning assigned to straight corridors from **38% to 11%** and concentrates triggers near consequential nodes. TAMP-Nav retains the strongest success rate across the plotted trajectory-length bins, while removing Space-Time Indicators reduces aggregate long-horizon SR by **4.2 points**. Two-Level GRPO reaches about **0.68** success reward during training; local step advantages and annealed guided sampling provide a clear advantage over trajectory-only feedback.
+The three views isolate distinct claims. RL alignment reduces reasoning assigned to straight corridors from **38% to 11%** and concentrates triggers near consequential nodes. Embodied-Navigator retains the strongest success rate across the plotted trajectory-length bins, while removing Space-Time Indicators reduces aggregate long-horizon SR by **4.2 points**. Two-Level GRPO reaches about **0.68** success reward during training; local step advantages and annealed guided sampling provide a clear advantage over trajectory-only feedback.
 
 ## Qualitative Examples
 
 ### Simulation
 
 <p align="center">
-  <img src="docs/img/simulation_trajectory.png" alt="TAMP-Nav simulation trajectory with selected visual waypoints and sparse reasoning" width="92%">
+  <img src="docs/img/simulation_trajectory.png" alt="Embodied-Navigator simulation trajectory with selected visual waypoints and sparse reasoning" width="92%">
 </p>
 
 <p align="center"><em>
@@ -218,7 +218,7 @@ A simulated trajectory illustrating multi-view pixel actions and sparse reasonin
 ### Real world
 
 <p align="center">
-  <img src="docs/img/real_world_trajectory.png" alt="TAMP-Nav real-world navigation trajectory" width="68%">
+  <img src="docs/img/real_world_trajectory.png" alt="Embodied-Navigator real-world navigation trajectory" width="68%">
   <img src="docs/img/real_world_success.png" alt="Real-world success-rate comparison" width="29%">
 </p>
 
@@ -278,7 +278,7 @@ Transformers 4.40+
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd TAMP-Nav
+cd Embodied-Navigator
 
 # Install dependencies
 pip install -r requirements.txt
@@ -352,8 +352,8 @@ Page conventions for maintainers are documented in `docs/README.md`.
 ## Citation
 
 ```bibtex
-@inproceedings{feng2026tampnav,
-  title     = {TAMP-Nav: Point, Think, Memorize, and Align
+@inproceedings{feng2026embodiednavigator,
+  title     = {Embodied-Navigator: Point, Think, Memorize, and Align
                for Efficient Embodied Navigation},
   author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
                Xie, Yangfan and Cui, Yuxiang and Zhou, Zhongxiang and
@@ -376,7 +376,7 @@ Page conventions for maintainers are documented in `docs/README.md`.
 **Distributed separately:**
 - Full licensed Habitat-Matterport3D simulation assets
 - Complete 90k-trajectory MultiNav-CoT dataset
-- [TAMP-Nav-7B-GRPO-1750 model checkpoint](https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750)
+- [Embodied-Navigator-7B-GRPO-600 model checkpoint](https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600)
 - Complete recordings of all 100 real-world trials (six representative videos are included in `docs/img/`)
 
 **Key dependencies:**

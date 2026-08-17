@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Project page for TAMP-Nav: Point, Think, Memorize, and Align for Efficient Embodied Navigation.">
+  <meta name="description" content="Project page for Embodied-Navigator: Point, Think, Memorize, and Align for Efficient Embodied Navigation.">
   <meta name="theme-color" content="#fbfcfa">
-  <title>TAMP-Nav: Point, Think, Memorize, and Align for Efficient Embodied Navigation</title>
+  <title>Embodied-Navigator: Point, Think, Memorize, and Align for Efficient Embodied Navigation</title>
   <link rel="stylesheet" href="assets/site.css">
   <script defer src="assets/site.js"></script>
 </head>
@@ -14,9 +14,9 @@
 
   <header class="site-header" data-site-header>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="site-mark" href="#top" aria-label="TAMP-Nav, top of page">
+      <a class="site-mark" href="#top" aria-label="Embodied-Navigator, top of page">
         <span class="site-mark-symbol">T</span>
-        <span>TAMP-Nav</span>
+        <span>Embodied-Navigator</span>
       </a>
       <div class="nav-links">
         <a href="#abstract">Abstract</a>
@@ -35,7 +35,7 @@
       <div class="masthead-copy page-width">
 
         <h1 id="page-title">
-          <span class="title-mark">TAMP-Nav</span><span class="title-colon">:</span>
+          <span class="title-mark">Embodied-Navigator</span><span class="title-colon">:</span>
           <span class="title-rest">Point, Think, Memorize, and Align for Efficient Embodied Navigation</span>
         </h1>
 
@@ -83,7 +83,7 @@
           <li>
             <a
               class="resource-link"
-              href="https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750"
+              href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -135,13 +135,13 @@
           poster="img/outdoors-overview-poster.jpg"
           width="1280"
           height="1380"
-          aria-label="TAMP-Nav narrated outdoor deployment overview"
+          aria-label="Embodied-Navigator narrated outdoor deployment overview"
         >
           <source src="img/outdoors.mp4" type="video/mp4">
           Your browser does not support the video element.
         </video>
         <figcaption>
-          <span class="fig-label">TAMP-Nav overview.</span>
+          <span class="fig-label">Embodied-Navigator overview.</span>
           A narrated outdoor deployment showing multi-view observations, selective reasoning,
           pixel waypoint prediction, and closed-loop navigation.
         </figcaption>
@@ -152,13 +152,13 @@
           class="figure-button"
           type="button"
           data-lightbox="img/architecture.png"
-          data-caption="Figure 1. TAMP-Nav combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution."
-          aria-label="Open Figure 1, the TAMP-Nav architecture, at full size"
+          data-caption="Figure 1. Embodied-Navigator combines multi-view RGB observations, language instructions, Anchor-Trajectory Memory, selective reasoning, visual waypoint prediction, and 2D-to-3D execution."
+          aria-label="Open Figure 1, the Embodied-Navigator architecture, at full size"
           title="Open full-size figure"
         >
           <img
             src="img/architecture.png"
-            alt="TAMP-Nav architecture showing memory, instruction and multi-view inputs, selective reasoning, pixel action prediction, and 2D-to-3D execution"
+            alt="Embodied-Navigator architecture showing memory, instruction and multi-view inputs, selective reasoning, pixel action prediction, and 2D-to-3D execution"
             width="1649"
             height="656"
             fetchpriority="high"
@@ -167,7 +167,7 @@
         </button>
         <figcaption>
           <span class="fig-label">Figure 1.</span>
-          Overview of TAMP-Nav. The policy reasons at critical nodes, predicts a view and a
+          Overview of Embodied-Navigator. The policy reasons at critical nodes, predicts a view and a
           2D pixel waypoint, and delegates metric execution to a low-level controller.
           Depth is used only after prediction, for geometric projection.
         </figcaption>
@@ -207,7 +207,7 @@
             embodied navigation, their direct deployment remains challenging, as existing
             methods often force VLMs into unnatural action spaces that misalign with their
             2D pre-training priors, compounded by rigid reasoning schedules and inefficient
-            memory management. To overcome these limitations, we propose <strong>TAMP-Nav</strong>,
+            memory management. To overcome these limitations, we propose <strong>Embodied-Navigator</strong>,
             a unified framework for efficient embodied navigation.
           </p>
           <p>
@@ -228,19 +228,19 @@
             By superimposing global outcome rewards with fine-grained process rewards, this dense
             supervision tightly aligns the agent's cognitive planning with physical environmental
             feedback, endowing the model with adaptive reasoning capabilities. Experiments
-            demonstrate that TAMP-Nav achieves state-of-the-art performance (e.g., 66.2% SR on
+            demonstrate that Embodied-Navigator achieves state-of-the-art performance (e.g., 66.2% SR on
             R2R-CE) with high runtime and sample efficiency (requiring only 90k training
             trajectories).
           </p>
         </div>
 
         <p class="contribution">
-          <strong>One-sentence contribution.</strong> TAMP-Nav aligns where a VLM points,
+          <strong>One-sentence contribution.</strong> Embodied-Navigator aligns where a VLM points,
           when it thinks, what it remembers, and how reinforcement learning credits its decisions.
         </p>
 
         <p class="contribution-note">
-          <strong>Note on system architecture.</strong> TAMP-Nav is a complete navigation
+          <strong>Note on system architecture.</strong> Embodied-Navigator is a complete navigation
           system. While the VLM observes RGB only, the full pipeline uses depth for
           pixel-to-3D projection and odometry for Space-Time Indicator encoding. The policy
           is trained on MultiNav-CoT, a 90k-trajectory dataset with Gemini 2.5 Flash–generated
@@ -372,7 +372,7 @@
           <p class="section-number">3</p>
           <h2 id="results-title">Main Results</h2>
           <p class="section-summary">
-            TAMP-Nav reports the strongest results among the compared RGB-based
+            Embodied-Navigator reports the strongest results among the compared RGB-based
             navigators on both validation-unseen benchmarks.
           </p>
         </div>
@@ -386,7 +386,7 @@
           normalized Dynamic Time Warping (nDTW). <strong>Sensor modalities:</strong> The VLM
           observes RGB only; the full system uses depth for pixel-to-3D projection and
           odometry for STI encoding. Compared methods vary in their use of panoramic views,
-          depth input to the VLM, and odometry; TAMP-Nav uses four 90° RGB views (360° coverage),
+          depth input to the VLM, and odometry; Embodied-Navigator uses four 90° RGB views (360° coverage),
           depth for post-prediction projection, and odometry for memory encoding.
         </p>
 
@@ -413,8 +413,8 @@
                   <tr><th scope="row">StreamVLN</th><td>4.98</td><td>64.2</td><td>56.9</td><td>51.9</td></tr>
                   <tr><th scope="row">NavFoM</th><td>4.61</td><td>72.1</td><td>61.7</td><td>55.3</td></tr>
                   <tr><th scope="row">DualVLN</th><td>4.05</td><td>70.7</td><td>64.3</td><td>58.5</td></tr>
-                  <tr class="baseline-ours"><th scope="row">TAMP-Nav (SFT only)</th><td>4.88</td><td>62.0</td><td>55.7</td><td>50.3</td></tr>
-                  <tr class="ours"><th scope="row">TAMP-Nav</th><td>3.85</td><td>74.5</td><td>66.2</td><td>58.8</td></tr>
+                  <tr class="baseline-ours"><th scope="row">Embodied-Navigator (SFT only)</th><td>4.88</td><td>62.0</td><td>55.7</td><td>50.3</td></tr>
+                  <tr class="ours"><th scope="row">Embodied-Navigator</th><td>3.85</td><td>74.5</td><td>66.2</td><td>58.8</td></tr>
                 </tbody>
               </table>
             </div>
@@ -442,8 +442,8 @@
                   <tr><th scope="row">StreamVLN</th><td>6.22</td><td>52.9</td><td>46.0</td><td>61.9</td></tr>
                   <tr><th scope="row">NavFoM</th><td>4.74</td><td>64.4</td><td>56.2</td><td>65.8</td></tr>
                   <tr><th scope="row">DualVLN</th><td>4.58</td><td>61.4</td><td>51.8</td><td>70.0</td></tr>
-                  <tr class="baseline-ours"><th scope="row">TAMP-Nav (SFT only)</th><td>6.10</td><td>52.4</td><td>46.2</td><td>62.1</td></tr>
-                  <tr class="ours"><th scope="row">TAMP-Nav</th><td>4.32</td><td>65.7</td><td>56.9</td><td>72.4</td></tr>
+                  <tr class="baseline-ours"><th scope="row">Embodied-Navigator (SFT only)</th><td>6.10</td><td>52.4</td><td>46.2</td><td>62.1</td></tr>
+                  <tr class="ours"><th scope="row">Embodied-Navigator</th><td>4.32</td><td>65.7</td><td>56.9</td><td>72.4</td></tr>
                 </tbody>
               </table>
             </div>
@@ -517,7 +517,7 @@
               >
                 <img
                   src="img/long_horizon_performance.png"
-                  alt="Long-horizon success-rate curves showing TAMP-Nav and memory ablations across forward-action count bins"
+                  alt="Long-horizon success-rate curves showing Embodied-Navigator and memory ablations across forward-action count bins"
                   width="1600"
                   height="800"
                   loading="lazy"
@@ -552,7 +552,7 @@
             <span class="fig-label">Figure 3.</span>
             Complementary evidence for adaptive cognition, long-horizon memory, and RL
             alignment. (a) RL shifts CoT triggers from diffuse corridor coverage toward
-            decision-relevant topological nodes. (b) TAMP-Nav maintains the strongest
+            decision-relevant topological nodes. (b) Embodied-Navigator maintains the strongest
             success rate as paths lengthen, while removing Space-Time Indicators weakens
             the margin. (c) Local step advantages and annealed guided sampling learn faster
             and reach higher reward than trajectory-only GRPO.
@@ -603,10 +603,10 @@
               <tbody>
                 <tr><th scope="row">StreamVLN</th><td>30.9</td></tr>
                 <tr><th scope="row">DualVLN</th><td>41.9</td></tr>
-                <tr><th scope="row">TAMP-Nav (uniform sampling)</th><td>40.5</td></tr>
-                <tr><th scope="row">TAMP-Nav (full history)</th><td>42.4</td></tr>
-                <tr><th scope="row">TAMP-Nav (w/o STI)</th><td>45.6</td></tr>
-                <tr class="ours"><th scope="row">TAMP-Nav (AT-Mem)</th><td>49.8</td></tr>
+                <tr><th scope="row">Embodied-Navigator (uniform sampling)</th><td>40.5</td></tr>
+                <tr><th scope="row">Embodied-Navigator (full history)</th><td>42.4</td></tr>
+                <tr><th scope="row">Embodied-Navigator (w/o STI)</th><td>45.6</td></tr>
+                <tr class="ours"><th scope="row">Embodied-Navigator (AT-Mem)</th><td>49.8</td></tr>
               </tbody>
             </table>
           </div>
@@ -886,13 +886,13 @@
               class="figure-button"
               type="button"
               data-lightbox="img/real_world_success.png"
-              data-caption="Figure 6. Real-world success rates over 100 blind trials: StreamVLN 49.0%, DualVLN 53.0%, and TAMP-Nav 60.0%."
+              data-caption="Figure 6. Real-world success rates over 100 blind trials: StreamVLN 49.0%, DualVLN 53.0%, and Embodied-Navigator 60.0%."
               aria-label="Open Figure 6, the real-world success chart, at full size"
               title="Open full-size figure"
             >
               <img
                 src="img/real_world_success.png"
-                alt="Bar chart showing real-world success rates of 49 percent for StreamVLN, 53 percent for DualVLN, and 60 percent for TAMP-Nav"
+                alt="Bar chart showing real-world success rates of 49 percent for StreamVLN, 53 percent for DualVLN, and 60 percent for Embodied-Navigator"
                 width="1600"
                 height="1338"
                 loading="lazy"
@@ -903,7 +903,7 @@
               <span class="fig-label">Figure 6.</span>
               Success rate across 100 blind trials run by an independent operator in
               unmapped indoor and outdoor environments, with human-annotated instructions;
-              success is stopping within 1.5&nbsp;m of the target. TAMP-Nav 60.0% versus
+              success is stopping within 1.5&nbsp;m of the target. Embodied-Navigator 60.0% versus
               StreamVLN 49.0% and DualVLN 53.0%. All baselines use the same Unitree Go2
               hardware, four-camera RGB setup, D435i depth camera, Hesai LiDAR for dense
               depth and localization (FastLIO odometry), and FAR Planner for local obstacle
@@ -1057,8 +1057,8 @@
 
         <div class="bibtex-block">
           <button class="bibtex-copy" type="button" data-copy-target="bibtex-source">Copy</button>
-          <pre id="bibtex-source"><code>@inproceedings{feng2026tampnav,
-  title     = {TAMP-Nav: Point, Think, Memorize, and Align
+          <pre id="bibtex-source"><code>@inproceedings{feng2026embodiednavigator,
+  title     = {Embodied-Navigator: Point, Think, Memorize, and Align
                for Efficient Embodied Navigation},
   author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
                Xie, Yangfan and Cui, Yuxiang and Zhou, Zhongxiang and
@@ -1093,7 +1093,7 @@
           </p>
           <p>
             The released
-            <a href="https://huggingface.co/UnderTides/TAMP-Nav-7B-GRPO-1750">TAMP-Nav-7B-GRPO-1750
+            <a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600">Embodied-Navigator-7B-GRPO-600
             checkpoint</a> is available on Hugging Face. The full licensed simulation assets,
             complete training corpus, additional deployment videos, manuscript, and paper
             source are distributed separately and are not part of this repository.
@@ -1105,7 +1105,7 @@
 
   <footer class="site-footer">
     <div class="page-width">
-      <p>TAMP-Nav &middot; No tracking, no external requests</p>
+      <p>Embodied-Navigator &middot; No tracking, no external requests</p>
       <a href="#top">Back to top</a>
     </div>
   </footer>
