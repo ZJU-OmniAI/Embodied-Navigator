@@ -21,9 +21,6 @@ Zhejiang University
 <a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600">
   <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=FFD21E">
 </a>
-<a href="https://github.com/ZJU-OmniAI/Embodied-Navigator/tree/main/data">
-  <img alt="MultiNav-CoT dataset" src="https://img.shields.io/badge/Dataset-MultiNav--CoT-2B5C8A?logo=databricks&logoColor=white">
-</a>
 <a href="#citation">
   <img alt="BibTeX citation" src="https://img.shields.io/badge/Citation-BibTeX-A87316?logo=googlescholar&logoColor=white">
 </a>
