@@ -9,6 +9,9 @@ Yuxiang Cui, Zhongxiang Zhou, Wenqi Zhang, Rong Xiong, Xuhong Zhang
 
 Zhejiang University
 
+<a href="https://arxiv.org/">
+  <img alt="arXiv paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?logo=arxiv&logoColor=white">
+</a>
 <a href="https://zju-omniai.github.io/Embodied-Navigator/">
   <img alt="Project page" src="https://img.shields.io/badge/Project_Page-Website-2B765C?logo=googlechrome&logoColor=white">
 </a>
@@ -16,7 +19,7 @@ Zhejiang University
   <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white">
 </a>
 <a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600">
-  <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=000">
+  <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=FFD21E">
 </a>
 <a href="https://github.com/ZJU-OmniAI/Embodied-Navigator/tree/main/data">
   <img alt="MultiNav-CoT dataset" src="https://img.shields.io/badge/Dataset-MultiNav--CoT-2B5C8A?logo=databricks&logoColor=white">
