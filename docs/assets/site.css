@@ -167,16 +167,10 @@ section[id] {
   text-decoration: none;
 }
 
-.site-mark-symbol {
-  display: grid;
-  width: 27px;
-  height: 27px;
-  border-radius: 4px;
-  background: var(--ink);
-  color: var(--white);
-  font-family: var(--serif);
-  font-size: 16px;
-  place-items: center;
+.site-mark-image {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
 }
 
 .nav-links {
