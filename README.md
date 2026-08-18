@@ -4,10 +4,12 @@
 
 ### Point, Think, Memorize, and Align for Efficient Embodied Navigation
 
-Hongyan Feng, Sunlai Chen, Xuanyu Liu, Miao Pan, Yangfan Xie, Yuxiang Cui,<br>
-Zhongxiang Zhou, Rong Xiong, Wenqi Zhang, Jianwei Yin, Yueting Zhuang, Xuhong Zhang
+Hongyan Feng<sup>&#8727;1</sup>, Sunlai Chen<sup>&#8727;1</sup>, Xuanyu Liu<sup>&#8727;1</sup>, Miao Pan<sup>1</sup>, Yangfan Xie<sup>1</sup>,<br>
+Wenqi Zhang<sup>&dagger;1</sup>, Yuxiang Cui<sup>2</sup>, Zhongxiang Zhou<sup>2</sup>, Rong Xiong<sup>2</sup>, Xuhong Zhang<sup>&dagger;1</sup>
 
-Zhejiang University
+<sup>1</sup>School of Software Technology, Zhejiang University<br>
+<sup>2</sup>Zhejiang Humanoid Robot Innovation Center Co., Ltd.<br>
+<sup>&#8727;</sup>Equal contribution, <sup>&dagger;</sup>Corresponding author
 
 <a href="https://arxiv.org/">
   <img alt="arXiv paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?logo=arxiv&logoColor=B31B1B">
@@ -362,9 +364,8 @@ Page conventions for maintainers are documented in `docs/README.md`.
   title     = {Embodied-Navigator: Point, Think, Memorize, and Align
                for Efficient Embodied Navigation},
   author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
-               Xie, Yangfan and Cui, Yuxiang and Zhou, Zhongxiang and
-               Xiong, Rong and Zhang, Wenqi and Yin, Jianwei and
-               Zhuang, Yueting and Zhang, Xuhong},
+               Xie, Yangfan and Zhang, Wenqi and Cui, Yuxiang and
+               Zhou, Zhongxiang and Xiong, Rong and Zhang, Xuhong},
   year      = {2026}
 }
 ```
