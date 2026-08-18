@@ -10,19 +10,19 @@ Zhongxiang Zhou, Rong Xiong, Wenqi Zhang, Jianwei Yin, Yueting Zhuang, Xuhong Zh
 Zhejiang University
 
 <a href="https://arxiv.org/">
-  <img alt="arXiv paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?logo=arxiv&logoColor=white">
+  <img alt="arXiv paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?logo=arxiv&logoColor=B31B1B">
 </a>
 <a href="https://zju-omniai.github.io/Embodied-Navigator/">
-  <img alt="Project page" src="https://img.shields.io/badge/Project_Page-Website-2B765C?logo=googlechrome&logoColor=white">
+  <img alt="Project page" src="https://img.shields.io/badge/Project_Page-Website-2B765C?logo=googlechrome&logoColor=4285F4">
 </a>
 <a href="https://github.com/ZJU-OmniAI/Embodied-Navigator">
-  <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white">
+  <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=181717">
 </a>
 <a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO">
   <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=FFD21E">
 </a>
 <a href="#citation">
-  <img alt="BibTeX citation" src="https://img.shields.io/badge/Citation-BibTeX-A87316?logo=googlescholar&logoColor=white">
+  <img alt="BibTeX citation" src="https://img.shields.io/badge/Citation-BibTeX-A87316?logo=googlescholar&logoColor=4285F4">
 </a>
 
 </div>
