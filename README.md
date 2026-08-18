@@ -29,9 +29,9 @@ Zhejiang University
 
 <p align="center">
   <a href="docs/img/Introduction.mp4">
-    <img src="docs/img/introduction-poster.jpg" alt="Embodied-Navigator introduction video" width="70%">
+    <img src="docs/img/introduction-poster.jpg" alt="Embodied-Navigator overview of model architecture and experimental results" width="70%">
   </a><br>
-  <em>Introduction video.</em>
+  <strong>Embodied-Navigator Overview: Model Architecture and Experimental Results</strong>
 </p>
 
 ## Overview
