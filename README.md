@@ -27,12 +27,9 @@ Zhejiang University
 
 </div>
 
-<p align="center">
-
-
 https://github.com/user-attachments/assets/695b83b4-7672-4d77-ac5b-dc455258e036
 
-
+<p align="center">
   <strong>Embodied-Navigator Overview: Model Architecture and Experimental Results</strong>
 </p>
 
