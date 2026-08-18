@@ -4,8 +4,8 @@
 
 ### Point, Think, Memorize, and Align for Efficient Embodied Navigation
 
-Hongyan Feng, Sunlai Chen, Xuanyu Liu, Miao Pan, Yangfan Xie,<br>
-Yuxiang Cui, Zhongxiang Zhou, Wenqi Zhang, Rong Xiong, Xuhong Zhang
+Hongyan Feng, Sunlai Chen, Xuanyu Liu, Miao Pan, Yangfan Xie, Yuxiang Cui,<br>
+Zhongxiang Zhou, Rong Xiong, Wenqi Zhang, Jianwei Yin, Yueting Zhuang, Xuhong Zhang
 
 Zhejiang University
 
@@ -18,7 +18,7 @@ Zhejiang University
 <a href="https://github.com/ZJU-OmniAI/Embodied-Navigator">
   <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=white">
 </a>
-<a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600">
+<a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO">
   <img alt="Hugging Face model" src="https://img.shields.io/badge/Model-Hugging_Face-FFD21E?logo=huggingface&logoColor=FFD21E">
 </a>
 <a href="#citation">
@@ -37,11 +37,11 @@ The framework couples this vision-centric action space with selective reasoning,
 
 ## Model Checkpoint
 
-The released [Embodied-Navigator-7B-GRPO-600 checkpoint](https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600) is available on Hugging Face. Download it with:
+The released [Embodied-Navigator-7B-GRPO checkpoint](https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO) is available on Hugging Face. Download it with:
 
 ```bash
-hf download UnderTides/Embodied-Navigator-7B-GRPO-600 \
-  --local-dir Embodied-Navigator-7B-GRPO-600
+hf download UnderTides/Embodied-Navigator-7B-GRPO \
+  --local-dir Embodied-Navigator-7B-GRPO
 ```
 
 ## Architecture
@@ -357,7 +357,8 @@ Page conventions for maintainers are documented in `docs/README.md`.
                for Efficient Embodied Navigation},
   author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
                Xie, Yangfan and Cui, Yuxiang and Zhou, Zhongxiang and
-               Zhang, Wenqi and Xiong, Rong and Zhang, Xuhong},
+               Xiong, Rong and Zhang, Wenqi and Yin, Jianwei and
+               Zhuang, Yueting and Zhang, Xuhong},
   year      = {2026}
 }
 ```
@@ -376,7 +377,7 @@ Page conventions for maintainers are documented in `docs/README.md`.
 **Distributed separately:**
 - Full licensed Habitat-Matterport3D simulation assets
 - Complete 90k-trajectory MultiNav-CoT dataset
-- [Embodied-Navigator-7B-GRPO-600 model checkpoint](https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO-600)
+- [Embodied-Navigator-7B-GRPO model checkpoint](https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO)
 - Complete recordings of all 100 real-world trials (six representative videos are included in `docs/img/`)
 
 **Key dependencies:**
