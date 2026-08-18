@@ -27,11 +27,6 @@ def call_yunwu_gemini_flash(
     model_name: str,
     retries: int = 4,
 ) -> str:
-    """
-    使用云雾的 Gemini 2.5 Flash，通过 openai SDK 调用 chat/completions。
-    输入为三段式思维链文本，输出为单段优化后的英文推理。
-    若失败则重试指定次数，耗尽后抛出最后一次异常。
-    """
     last_err = None
     for _ in range(retries):
         try:
