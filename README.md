@@ -27,6 +27,13 @@ Zhejiang University
 
 </div>
 
+<p align="center">
+  <a href="docs/img/Introduction.mp4">
+    <img src="docs/img/introduction-poster.jpg" alt="Embodied-Navigator introduction video" width="70%">
+  </a><br>
+  <em>Introduction video.</em>
+</p>
+
 ## Overview
 
 Embodied-Navigator is a unified vision-language navigation framework that aligns high-level visual reasoning with low-level physical execution. Instead of asking a vision-language model (VLM) to regress 3D coordinates or emit long sequences of atomic actions, Embodied-Navigator lets the model act as a visual pointer: it selects a camera view and a 2D pixel waypoint, which is projected into 3D and executed by a low-level SLAM controller.

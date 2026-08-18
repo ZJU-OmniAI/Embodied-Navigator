@@ -346,7 +346,7 @@ section[id] {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1280 / 1380;
+  aspect-ratio: 960 / 544;
   border: 1px solid var(--line-strong);
   border-radius: 4px;
   background: #101412;
