@@ -359,8 +359,6 @@ Page conventions for maintainers are documented in `docs/README.md`.
 
 ## Citation
 
-Paper: [arXiv:2608.17512](https://arxiv.org/abs/2608.17512)
-
 ```bibtex
 @inproceedings{feng2026embodiednavigator,
   title     = {Embodied-Navigator: Point, Think, Memorize, and Align
@@ -368,7 +366,8 @@ Paper: [arXiv:2608.17512](https://arxiv.org/abs/2608.17512)
   author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
                Xie, Yangfan and Zhang, Wenqi and Cui, Yuxiang and
                Zhou, Zhongxiang and Xiong, Rong and Zhang, Xuhong},
-  year      = {2026}
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2608.17512}
 }
 ```
 
