@@ -11,7 +11,7 @@ Wenqi Zhang<sup>&dagger;1</sup>, Yuxiang Cui<sup>2</sup>, Zhongxiang Zhou<sup>2<
 <sup>2</sup>Zhejiang Humanoid Robot Innovation Center Co., Ltd.<br>
 <sup>&#8727;</sup>Equal contribution, <sup>&dagger;</sup>Corresponding author
 
-<a href="https://arxiv.org/">
+<a href="https://arxiv.org/abs/2608.17512">
   <img alt="arXiv paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?logo=arxiv&logoColor=B31B1B">
 </a>
 <a href="https://zju-omniai.github.io/Embodied-Navigator/">
@@ -358,6 +358,8 @@ python3 -m http.server 8000
 Page conventions for maintainers are documented in `docs/README.md`.
 
 ## Citation
+
+Paper: [arXiv:2608.17512](https://arxiv.org/abs/2608.17512)
 
 ```bibtex
 @inproceedings{feng2026embodiednavigator,
