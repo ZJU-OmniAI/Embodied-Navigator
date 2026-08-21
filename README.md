@@ -360,13 +360,16 @@ Page conventions for maintainers are documented in `docs/README.md`.
 ## Citation
 
 ```bibtex
-@inproceedings{feng2026embodiednavigator,
+@misc{feng2026embodiednavigator,
   title     = {Embodied-Navigator: Point, Think, Memorize, and Align
                for Efficient Embodied Navigation},
   author    = {Feng, Hongyan and Chen, Sunlai and Liu, Xuanyu and Pan, Miao and
                Xie, Yangfan and Zhang, Wenqi and Cui, Yuxiang and
                Zhou, Zhongxiang and Xiong, Rong and Zhang, Xuhong},
   year      = {2026},
+  eprint    = {2608.17512},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
   url       = {https://arxiv.org/abs/2608.17512}
 }
 ```
