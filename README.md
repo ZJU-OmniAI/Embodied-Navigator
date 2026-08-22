@@ -17,7 +17,7 @@ Wenqi Zhang<sup>&dagger;1</sup>, Yuxiang Cui<sup>2</sup>, Zhongxiang Zhou<sup>2<
 <a href="https://zju-omniai.github.io/Embodied-Navigator/">
   <img alt="Project page" src="https://img.shields.io/badge/Project_Page-Website-2B765C?logo=googlechrome&logoColor=4285F4">
 </a>
-<a href="https://github.com/ZJU-OmniAI/Embodied-Navigator">
+<a href="https://github.com/ZJU-OmniAI/Embodied-Omni">
   <img alt="Code repository" src="https://img.shields.io/badge/Code-GitHub-181717?logo=github&logoColor=181717">
 </a>
 <a href="https://huggingface.co/UnderTides/Embodied-Navigator-7B-GRPO">
